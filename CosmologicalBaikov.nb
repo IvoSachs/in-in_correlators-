@@ -1,0 +1,1523 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     63678,       1513]
+NotebookOptionsPosition[     58433,       1415]
+NotebookOutlinePosition[     58901,       1433]
+CellTagsIndexPosition[     58858,       1430]
+WindowTitle->Cosmological Baikov I110 reduction
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Cosmological Baikov: the I110 reduction", "Title",ExpressionUUID->"89496493-3fb1-4eac-8530-fafefec216ec"],
+
+Cell["\<\
+This notebook is reconstructed from CosmologicalBaikov.wl. It derives the \
+five-master I110 differential system, verifies the corrected top-sector \
+identity, displays the staged IBP/Hermite reduction, and constructs the \
+leading-singularity basis. All calculations are evaluated by the package; no \
+previously saved notebook output is required.\
+\>", "Text",ExpressionUUID->"a3ecddec-5b30-4856-8990-bdb485d9214c"],
+
+Cell[CellGroupData[{
+
+Cell["1. Load the package", "Section",ExpressionUUID->"0add5d7a-e37b-4e82-9e6c-7fbd85675add"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";", 
+  RowBox[{"notebookDirectory", "=", 
+   RowBox[{"Quiet", "[", 
+    RowBox[{"Check", "[", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+      RowBox[{"DirectoryName", "[", "$InputFileName", "]"}]}], "]"}], "]"}]}],
+   ";", 
+  RowBox[{"Get", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{"notebookDirectory", ",", "\"\<CosmologicalBaikov.wl\>\""}], 
+     "}"}], "]"}], "]"}], ";"}]], "Input",
+ CellLabel->
+  "In[932]:=",ExpressionUUID->"7e271500-8772-444e-b77a-d612a2bf4093"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2. Kinematic polynomials", "Section",ExpressionUUID->"08a45f13-e64c-4b88-ad9b-e763f4524ee0"],
+
+Cell["\<\
+The dimensionally regulated measure is d^(1-2 epsilon)p2 d^(1-2 epsilon)p3. \
+The basic invariants are lambda0=c^2/4-a b, h=a+b-c, and the corrected \
+constant tildeLambda0 appearing in the decomposition of Lambda in terms of \
+D1,D2,D3.\
+\>", "Text",ExpressionUUID->"2cc58603-ca51-4a12-bb80-b8772bf10f3c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\"\<lambda0\>\"", "\[Rule]", 
+    RowBox[{"CosmologicalBaikov`Lambda0", "[", "]"}]}], ",", 
+   RowBox[{"\"\<h\>\"", "\[Rule]", 
+    RowBox[{"CosmologicalBaikov`HInvariant", "[", "]"}]}], ",", 
+   RowBox[{"\"\<kappa\>\"", "\[Rule]", 
+    RowBox[{"CosmologicalBaikov`KappaInvariant", "[", "]"}]}], ",", 
+   RowBox[{"\"\<tildeLambda0\>\"", "\[Rule]", 
+    RowBox[{"CosmologicalBaikov`TildeLambda0", "[", "]"}]}]}], "}"}]], "Input",\
+
+ CellLabel->
+  "In[933]:=",ExpressionUUID->"40d7a0c5-47d3-465d-bec1-3d8baee30256"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\<\"lambda0\"\>", "\[Rule]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "aK"}], " ", "bK"}], "+", 
+     FractionBox[
+      SuperscriptBox["cK", "2"], "4"]}]}], ",", 
+   RowBox[{"\<\"h\"\>", "\[Rule]", 
+    RowBox[{"aK", "+", "bK", "-", "cK"}]}], ",", 
+   RowBox[{"\<\"kappa\"\>", "\[Rule]", 
+    RowBox[{
+     RowBox[{"-", "bK"}], "+", "cK", "+", "x0sq", "-", "x2sq"}]}], ",", 
+   RowBox[{"\<\"tildeLambda0\"\>", "\[Rule]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "aK"}], " ", "bK"}], "+", 
+     FractionBox[
+      SuperscriptBox["cK", "2"], "4"], "+", 
+     RowBox[{"bK", " ", "x2sq"}], "+", 
+     RowBox[{
+      FractionBox["1", "2"], " ", "cK", " ", 
+      RowBox[{"(", 
+       RowBox[{"x0sq", "-", "x2sq", "-", "x3sq"}], ")"}]}], "+", 
+     RowBox[{"aK", " ", "x3sq"}]}]}]}], "}"}]], "Output",
+ CellChangeTimes->{4.001339389006212*^9},
+ CellLabel->
+  "Out[933]=",ExpressionUUID->"ba06b02f-3bc7-45d7-9ef3-205f3a73673b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"p2", ",", "p3"}], "]"}], ";", 
+  RowBox[{"d1", "=", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"p3", "-", "p2"}], ")"}], "2"], "+", 
+    "CosmologicalBaikov`x0sq"}]}], ";", 
+  RowBox[{"d2", "=", 
+   RowBox[{
+    SuperscriptBox["p2", "2"], "+", "CosmologicalBaikov`x2sq"}]}], ";", 
+  RowBox[{"d3", "=", 
+   RowBox[{
+    SuperscriptBox["p3", "2"], "+", "CosmologicalBaikov`x3sq"}]}], ";", 
+  RowBox[{"lambda", "=", 
+   RowBox[{
+    RowBox[{"CosmologicalBaikov`cK", " ", "p2", " ", "p3"}], "-", 
+    RowBox[{"CosmologicalBaikov`bK", " ", 
+     SuperscriptBox["p2", "2"]}], "-", 
+    RowBox[{"CosmologicalBaikov`aK", " ", 
+     SuperscriptBox["p3", "2"]}], "+", 
+    RowBox[{"CosmologicalBaikov`Lambda0", "[", "]"}]}]}], ";", 
+  RowBox[{"lambdaDecomposition", "=", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "2"], " ", 
+     RowBox[{"(", 
+      RowBox[{"-", "CosmologicalBaikov`cK"}], ")"}], " ", "d1"}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       FractionBox["CosmologicalBaikov`cK", "2"], "-", 
+       "CosmologicalBaikov`bK"}], ")"}], " ", "d2"}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       FractionBox["CosmologicalBaikov`cK", "2"], "-", 
+       "CosmologicalBaikov`aK"}], ")"}], " ", "d3"}], "+", 
+    RowBox[{"CosmologicalBaikov`TildeLambda0", "[", "]"}]}]}], ";", 
+  RowBox[{"VerificationTest", "[", 
+   RowBox[{
+    RowBox[{"Expand", "[", 
+     RowBox[{"lambda", "-", "lambdaDecomposition"}], "]"}], ",", "0", ",", 
+    RowBox[{"TestID", "\[Rule]", "\"\<Lambda-decomposition\>\""}]}], 
+   "]"}]}]], "Input",
+ CellLabel->
+  "In[934]:=",ExpressionUUID->"3131d04b-8685-4836-8bce-0920d2efa947"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["TestObject",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"], 
+               ImageSizeCache -> {13.373115234375, {0., 13.373115234375}}], 
+              Appearance -> None, BaseStyle -> {}, 
+              ButtonFunction :> (Typeset`open$$ = True), Evaluator -> 
+              Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[
+             InsetBox[
+              PaneBox[
+               DynamicBox[
+                FEPrivate`FrontEndResource["MUnitExpressions", "SuccessIcon"],
+                 ImageSizeCache -> {
+                 29.7689208984375, {11.02825927734375, 18.74066162109375}}], 
+               Alignment -> Center, ImageSize -> 
+               Dynamic[{
+                 Automatic, 
+                  3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                   Magnification])}], ScrollPosition -> {0., 0.}]], 
+             AspectRatio -> 1, Axes -> False, Background -> GrayLevel[0.93], 
+             Frame -> True, FrameStyle -> Directive[
+               Thickness[Tiny], 
+               GrayLevel[0.55]], FrameTicks -> None, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}], PlotRange -> {{0, 1}, {0, 1}}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Outcome: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Success\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Test ID: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  
+                  PaneSelectorBox[{
+                   False -> TagBox["\"Lambda-decomposition\"", HoldForm], 
+                    True -> StyleBox[
+                    TagBox[
+                    TagBox[
+                    TooltipBox[
+                    TagBox["\"Lambda-decomposition\"", HoldForm], 
+                    "\"Copy to clipboard.\"", TooltipStyle -> "TextStyling"], 
+                    Annotation[#, "Copy to clipboard.", "Tooltip"]& ], 
+                    EventHandlerTag[{"MouseClicked" :> CopyToClipboard[
+                    Unevaluated["Lambda-decomposition"]], Method -> 
+                    "Preemptive", PassEventsDown -> Automatic, PassEventsUp -> 
+                    True}]], StripOnInput -> False, Background -> 
+                    GrayLevel[0.85]]}, 
+                   Dynamic[
+                    CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                   Automatic], "SummaryItem"]}]}}, AutoDelete -> False, 
+             BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True -> 
+        GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"]], 
+              Appearance -> None, BaseStyle -> {}, 
+              ButtonFunction :> (Typeset`open$$ = False), Evaluator -> 
+              Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[
+             InsetBox[
+              PaneBox[
+               DynamicBox[
+                FEPrivate`FrontEndResource[
+                "MUnitExpressions", "SuccessIcon"]], Alignment -> Center, 
+               ImageSize -> 
+               Dynamic[{
+                 Automatic, 
+                  3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                   Magnification])}]]], AspectRatio -> 1, Axes -> False, 
+             Background -> GrayLevel[0.93], Frame -> True, FrameStyle -> 
+             Directive[
+               Thickness[Tiny], 
+               GrayLevel[0.55]], FrameTicks -> None, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}], PlotRange -> {{0, 1}, {0, 1}}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Outcome: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Success\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Test ID: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  
+                  PaneSelectorBox[{
+                   False -> TagBox["\"Lambda-decomposition\"", HoldForm], 
+                    True -> StyleBox[
+                    TagBox[
+                    TagBox[
+                    TooltipBox[
+                    TagBox["\"Lambda-decomposition\"", HoldForm], 
+                    "\"Copy to clipboard.\"", TooltipStyle -> "TextStyling"], 
+                    Annotation[#, "Copy to clipboard.", "Tooltip"]& ], 
+                    EventHandlerTag[{"MouseClicked" :> CopyToClipboard[
+                    Unevaluated["Lambda-decomposition"]], Method -> 
+                    "Preemptive", PassEventsDown -> Automatic, PassEventsUp -> 
+                    True}]], StripOnInput -> False, Background -> 
+                    GrayLevel[0.85]]}, 
+                   Dynamic[
+                    CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                   Automatic], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Input: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  PaneBox[
+                   TagBox[
+                    PaneSelectorBox[{False -> RowBox[{"Expand", "[", 
+                    RowBox[{"lambda", "-", "lambdaDecomposition"}], "]"}], 
+                    True -> StyleBox[
+                    TagBox[
+                    TagBox[
+                    TooltipBox[
+                    RowBox[{"Expand", "[", 
+                    RowBox[{"lambda", "-", "lambdaDecomposition"}], "]"}], 
+                    "\"Copy to clipboard.\"", TooltipStyle -> "TextStyling"], 
+                    Annotation[#, "Copy to clipboard.", "Tooltip"]& ], 
+                    EventHandlerTag[{"MouseClicked" :> CopyToClipboard[
+                    Unevaluated[
+                    
+                    Expand[$CellContext`lambda - \
+$CellContext`lambdaDecomposition]]], Method -> "Preemptive", PassEventsDown -> 
+                    Automatic, PassEventsUp -> True}]], StripOnInput -> False,
+                     Background -> GrayLevel[0.85]]}, 
+                    Dynamic[
+                    CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                    Automatic], Short[#, 
+                    Rational[2, 3]]& ], BaselinePosition -> Baseline, 
+                   ContentPadding -> False, FrameMargins -> 0, 
+                   ImageSize -> {{1, 500}, Automatic}, StripOnInput -> True], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Expected output: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  PaneBox[
+                   TagBox[
+                    PaneSelectorBox[{False -> "0", True -> StyleBox[
+                    TagBox[
+                    TagBox[
+                    TooltipBox[
+                    "0", "\"Copy to clipboard.\"", TooltipStyle -> 
+                    "TextStyling"], 
+                    Annotation[#, "Copy to clipboard.", "Tooltip"]& ], 
+                    EventHandlerTag[{"MouseClicked" :> CopyToClipboard[
+                    Unevaluated[0]], Method -> "Preemptive", PassEventsDown -> 
+                    Automatic, PassEventsUp -> True}]], StripOnInput -> False,
+                     Background -> GrayLevel[0.85]]}, 
+                    Dynamic[
+                    CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                    Automatic], Short[#, 
+                    Rational[2, 3]]& ], BaselinePosition -> Baseline, 
+                   ContentPadding -> False, FrameMargins -> 0, 
+                   ImageSize -> {{1, 500}, Automatic}, StripOnInput -> True], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Actual output: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  PaneBox[
+                   TagBox[
+                    PaneSelectorBox[{False -> "0", True -> StyleBox[
+                    TagBox[
+                    TagBox[
+                    TooltipBox[
+                    "0", "\"Copy to clipboard.\"", TooltipStyle -> 
+                    "TextStyling"], 
+                    Annotation[#, "Copy to clipboard.", "Tooltip"]& ], 
+                    EventHandlerTag[{"MouseClicked" :> CopyToClipboard[
+                    Unevaluated[0]], Method -> "Preemptive", PassEventsDown -> 
+                    Automatic, PassEventsUp -> True}]], StripOnInput -> False,
+                     Background -> GrayLevel[0.85]]}, 
+                    Dynamic[
+                    CurrentValue["MouseOver"]], FrameMargins -> 0, ImageSize -> 
+                    Automatic], Short[#, 
+                    Rational[2, 3]]& ], BaselinePosition -> Baseline, 
+                   ContentPadding -> False, FrameMargins -> 0, 
+                   ImageSize -> {{1, 500}, Automatic}, StripOnInput -> True], 
+                  "SummaryItem"]}]}}, AutoDelete -> False, 
+             BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  TestObject[<|
+   "MetaInformation" -> None, "AbsoluteTime" -> 
+    4.001339396081024`15.655810374891715*^9, "SameTest" -> SameQ, 
+    "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
+    DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
+    "CreationID" -> "ff4233bb-28ca-4b98-8fb4-4c3f590d5405", "TestID" -> 
+    "Lambda-decomposition", "TestFileName" -> "", "EvaluationID" -> 
+    "d945a9b6-340f-4426-aceb-4bac1fe2bc86", "Input" -> HoldForm[
+      Expand[$CellContext`lambda - $CellContext`lambdaDecomposition]], 
+    "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[0], 
+    "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 0.000192`2.4338162265355434,
+     "CPUTimeUsed" -> 0.00019500000053085387`, "MemoryUsed" -> 4352, 
+    "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[0], "Outcome" -> 
+    "Success", "FailureType" -> None|>],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{4.001339396116396*^9},
+ CellLabel->
+  "Out[934]=",ExpressionUUID->"c33fa828-9035-4717-927e-6a6d9ebf286d"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Master basis", "Section",ExpressionUUID->"5811eeab-505b-42d8-815c-174b91694958"],
+
+Cell["\<\
+The package uses CBI[u,s,v]=Ibar^(u s 0,v 0 0;0). The fifth master has one D4 \
+numerator because v=-1.\
+\>", "Text",ExpressionUUID->"a80cc15e-119d-4a96-b34b-8a00cef89b82"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"masters", "=", 
+   RowBox[{"CosmologicalBaikov`MasterBasis", "[", "]"}]}], ";", 
+  RowBox[{"Column", "[", "masters", "]"}]}]], "Input",
+ CellLabel->
+  "In[935]:=",ExpressionUUID->"444e9292-79a5-424e-97cd-3a377b71c43e"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     RowBox[{"CBI", "[", 
+      RowBox[{"0", ",", "0", ",", "0"}], "]"}]},
+    {
+     RowBox[{"CBI", "[", 
+      RowBox[{"0", ",", "1", ",", "0"}], "]"}]},
+    {
+     RowBox[{"CBI", "[", 
+      RowBox[{"1", ",", "0", ",", "0"}], "]"}]},
+    {
+     RowBox[{"CBI", "[", 
+      RowBox[{"1", ",", "1", ",", "0"}], "]"}]},
+    {
+     RowBox[{"CBI", "[", 
+      RowBox[{"1", ",", "1", ",", 
+       RowBox[{"-", "1"}]}], "]"}]}
+   },
+   DefaultBaseStyle->"Column",
+   GridBoxAlignment->{"Columns" -> {{Left}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Column"]], "Output",
+ CellChangeTimes->{4.001339406594975*^9},
+ CellLabel->
+  "Out[935]=",ExpressionUUID->"e1b51e3e-f6c9-4eb7-a1fe-2b1d119cfc88"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["4. Scaling and parameter differentiation", "Section",ExpressionUUID->"3bc4d7be-70e7-4b05-ae99-aa3992920c0a"],
+
+Cell["\<\
+ScalingIdentity implements the dimensionally regulated relation that lowers \
+the extra power of Lambda. D6NumeratorReduction uses D6=D1-D2+2 D4-kappa. \
+Their combination gives the raw partial_a derivative before the remaining IBP \
+reduction.\
+\>", "Text",ExpressionUUID->"4b6446a8-4a6b-48c4-8264-67e64a0edbc9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"CosmologicalBaikov`ScalingIdentity", "[", 
+    RowBox[{"1", ",", "1", ",", "0"}], "]"}], ",", 
+   RowBox[{"CosmologicalBaikov`D6NumeratorReduction", "[", 
+    RowBox[{"1", ",", "1", ",", "0"}], "]"}], ",", 
+   RowBox[{"CosmologicalBaikov`ParameterDerivativeA", "[", 
+    RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "}"}]], "Input",
+ CellLabel->
+  "In[936]:=",ExpressionUUID->"cd25856d-ca12-468b-bf36-c1f4c0035721"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "aK"}], " ", "bK"}], "+", 
+       FractionBox[
+        SuperscriptBox["cK", "2"], "4"]}], ")"}], " ", 
+     RowBox[{"CBI", "[", 
+      RowBox[{"1", ",", "1", ",", "0", ",", "1"}], "]"}]}], "\[Equal]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "2"}], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", 
+         FractionBox["3", "2"]}], "-", 
+        RowBox[{"2", " ", "eps"}]}], ")"}], " ", 
+      RowBox[{"CBI", "[", 
+       RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "-", 
+     RowBox[{"2", " ", "x2sq", " ", 
+      RowBox[{"CBI", "[", 
+       RowBox[{"1", ",", "2", ",", "0"}], "]"}]}], "-", 
+     RowBox[{"2", " ", "x0sq", " ", 
+      RowBox[{"CBI", "[", 
+       RowBox[{"2", ",", "1", ",", "0"}], "]"}]}]}]}], ",", 
+   RowBox[{
+    RowBox[{"CBI", "[", 
+     RowBox[{"0", ",", "1", ",", "0"}], "]"}], "-", 
+    RowBox[{"CBI", "[", 
+     RowBox[{"1", ",", "0", ",", "0"}], "]"}], "+", 
+    RowBox[{"2", " ", 
+     RowBox[{"CBI", "[", 
+      RowBox[{"1", ",", "1", ",", 
+       RowBox[{"-", "1"}]}], "]"}]}], "-", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "bK"}], "+", "cK", "+", "x0sq", "-", "x2sq"}], ")"}], " ", 
+     RowBox[{"CBI", "[", 
+      RowBox[{"1", ",", "1", ",", "0"}], "]"}]}]}], ",", 
+   RowBox[{"-", 
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{
+       RowBox[{"4", " ", "aK", " ", "bK"}], "-", 
+       SuperscriptBox["cK", "2"]}]], 
+     RowBox[{"2", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"CBI", "[", 
+         RowBox[{"0", ",", "1", ",", "0"}], "]"}], "+", 
+        RowBox[{"4", " ", "eps", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"0", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"2", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"0", ",", "2", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"CBI", "[", 
+         RowBox[{"1", ",", "0", ",", "0"}], "]"}], "-", 
+        RowBox[{"4", " ", "eps", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "0", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", 
+           RowBox[{"-", "1"}]}], "]"}]}], "+", 
+        RowBox[{"8", " ", "eps", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", 
+           RowBox[{"-", "1"}]}], "]"}]}], "+", 
+        RowBox[{"3", " ", "bK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"cK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"4", " ", "bK", " ", "eps", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"4", " ", "cK", " ", "eps", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"3", " ", "x0sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"4", " ", "eps", " ", "x0sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"3", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"4", " ", "eps", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"4", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "2", ",", 
+           RowBox[{"-", "1"}]}], "]"}]}], "-", 
+        RowBox[{"2", " ", "bK", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "2", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", "cK", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "2", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", "x0sq", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "2", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["x2sq", "2"], " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "2", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", "x0sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "0", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"4", " ", "x0sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", 
+           RowBox[{"-", "1"}]}], "]"}]}], "-", 
+        RowBox[{"2", " ", "bK", " ", "x0sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", "cK", " ", "x0sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["x0sq", "2"], " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"2", " ", "x0sq", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}]}], ")"}]}]}]}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{4.001339415406557*^9},
+ CellLabel->
+  "Out[936]=",ExpressionUUID->"aa1b230b-4f1f-499b-9275-8b40295573c6"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["5. Vector IBPs and the tangential identity", "Section",ExpressionUUID->"2cabc76c-92d0-4cff-9bcf-24667db54501"],
+
+Cell["\<\
+Four vector IBPs, labelled pp,pq,qp,qq, close the mixed sector. Their \
+combination generated by T=(c p2-2 a p3) partial_p2+(2 b p2-c p3) partial_p3 \
+is tangent to Lambda and has zero divergence.\
+\>", "Text",ExpressionUUID->"889f4de4-3644-4774-bc73-a37e34787cbb"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ibps", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"CosmologicalBaikov`IBPIdentity", "[", 
+       RowBox[{"#1", ",", "1", ",", "1", ",", "0"}], "]"}], "&"}], ")"}], "/@", 
+    RowBox[{"{", 
+     RowBox[{"\"\<pp\>\"", ",", "\"\<pq\>\"", ",", "\"\<qp\>\"", 
+      ",", "\"\<qq\>\""}], "}"}]}]}], ";", 
+  RowBox[{"tangentialIBP", "=", 
+   RowBox[{"CosmologicalBaikov`TangentialIBPIdentity", "[", 
+    RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], ";", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\"\<number of vector IBPs\>\"", "\[Rule]", 
+     RowBox[{"Length", "[", "ibps", "]"}]}], ",", 
+    RowBox[{"\"\<tangency and divergence check\>\"", "\[Rule]", 
+     RowBox[{"CosmologicalBaikov`TangentialCheck", "[", "]"}]}], ",", 
+    RowBox[{"\"\<tangential IBP\>\"", "\[Rule]", "tangentialIBP"}]}], 
+   "}"}]}]], "Input",
+ CellLabel->
+  "In[937]:=",ExpressionUUID->"48f44b77-4942-45bc-a5fa-b6dbfa850826"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\<\"number of vector IBPs\"\>", "\[Rule]", "4"}], ",", 
+   RowBox[{"\<\"tangency and divergence check\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+   RowBox[{"\<\"tangential IBP\"\>", "\[Rule]", 
+    RowBox[{
+     RowBox[{"2", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "2"}], " ", "aK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "1", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", "aK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "2", ",", 
+           RowBox[{"-", "1"}]}], "]"}]}], "-", 
+        RowBox[{"aK", " ", "cK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "2", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"cK", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"1", ",", "2", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", "aK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "0", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", "bK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "0", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"2", " ", "cK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "0", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"2", " ", "aK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", 
+           RowBox[{"-", "1"}]}], "]"}]}], "-", 
+        RowBox[{"2", " ", "bK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", 
+           RowBox[{"-", "1"}]}], "]"}]}], "+", 
+        RowBox[{"2", " ", "cK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", 
+           RowBox[{"-", "1"}]}], "]"}]}], "+", 
+        RowBox[{"aK", " ", "cK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"bK", " ", "cK", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{
+         SuperscriptBox["cK", "2"], " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", "aK", " ", "x0sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"cK", " ", "x0sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"2", " ", "aK", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}], "-", 
+        RowBox[{"2", " ", "bK", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}], "+", 
+        RowBox[{"2", " ", "cK", " ", "x2sq", " ", 
+         RowBox[{"CBI", "[", 
+          RowBox[{"2", ",", "1", ",", "0"}], "]"}]}]}], ")"}]}], "\[Equal]", 
+     "0"}]}]}], "}"}]], "Output",
+ CellChangeTimes->{4.0013394319717693`*^9},
+ CellLabel->
+  "Out[937]=",ExpressionUUID->"ede10464-1ef6-4a9f-9dcf-6529df8cd3f3"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["6. Staged Hermite/IBP reduction", "Section",ExpressionUUID->"28d67ad4-c075-416c-aa2c-7404ccfa5c88"],
+
+Cell["\<\
+One-denominator Hermite identities first remove the elementary raised powers. \
+A four-equation system then reduces the v=0 mixed integrals. At v=-1, three \
+independent equations reduce the remaining numerator integrals and the fourth \
+equation is retained as a consistency check.\
+\>", "Text",ExpressionUUID->"101b4328-565f-4b14-944d-cf64b1cf0e28"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"reduction", "=", 
+   RowBox[{"CosmologicalBaikov`ReductionData", "[", "]"}]}], ";", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\"\<Hermite coefficients\>\"", "\[Rule]", 
+     RowBox[{"reduction", "[", "\"\<HermiteCoefficients\>\"", "]"}]}], ",", 
+    RowBox[{"\"\<v=0 mixed system dimensions\>\"", "\[Rule]", 
+     RowBox[{"Dimensions", "[", 
+      RowBox[{
+       RowBox[{"reduction", "[", "\"\<MixedMatrices\>\"", "]"}], "\[LeftDoubleBracket]",
+        "1", "\[RightDoubleBracket]"}], "]"}]}], ",", 
+    RowBox[{"\"\<v=-1 mixed system dimensions\>\"", "\[Rule]", 
+     RowBox[{"Dimensions", "[", 
+      RowBox[{
+       RowBox[{"reduction", "[", "\"\<MixedMatrices\>\"", "]"}], "\[LeftDoubleBracket]",
+        "2", "\[RightDoubleBracket]"}], "]"}]}], ",", 
+    RowBox[{"\"\<number of reduction rules\>\"", "\[Rule]", 
+     RowBox[{"Length", "[", 
+      RowBox[{"reduction", "[", "\"\<Rules\>\"", "]"}], "]"}]}]}], 
+   "}"}]}]], "Input",
+ CellLabel->
+  "In[938]:=",ExpressionUUID->"9e000d1c-e2b6-43fe-9412-11a77b3535b8"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\<\"Hermite coefficients\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"r0\"\>", "\[Rule]", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"4", " ", "eps"}]}], 
+        RowBox[{"2", " ", 
+         RowBox[{"(", 
+          RowBox[{"aK", "+", "bK", "-", "cK", "-", "x0sq"}], ")"}], " ", 
+         "x0sq"}]]}], ",", 
+      RowBox[{"\<\"r1\"\>", "\[Rule]", 
+       FractionBox[
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"aK", "+", "bK", "-", "cK"}], ")"}], " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{"2", " ", "eps"}]}], ")"}]}], "-", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{"4", " ", "eps"}]}], ")"}], " ", "x0sq"}]}], 
+        RowBox[{"2", " ", 
+         RowBox[{"(", 
+          RowBox[{"aK", "+", "bK", "-", "cK", "-", "x0sq"}], ")"}], " ", 
+         "x0sq"}]]}], ",", 
+      RowBox[{"\<\"s0\"\>", "\[Rule]", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"4", " ", "eps"}]}], 
+        RowBox[{"2", " ", 
+         RowBox[{"(", 
+          RowBox[{"aK", "-", "x2sq"}], ")"}], " ", "x2sq"}]]}], ",", 
+      RowBox[{"\<\"s1\"\>", "\[Rule]", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"aK", " ", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{"2", " ", "eps"}]}], ")"}]}], "-", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{"4", " ", "eps"}]}], ")"}], " ", "x2sq"}]}], 
+        RowBox[{"2", " ", 
+         RowBox[{"(", 
+          RowBox[{"aK", "-", "x2sq"}], ")"}], " ", "x2sq"}]]}], ",", 
+      RowBox[{"\<\"qA\"\>", "\[Rule]", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"12", " ", "aK", " ", "bK"}], "-", 
+         RowBox[{"4", " ", "aK", " ", "cK"}], "-", 
+         RowBox[{"4", " ", "bK", " ", "cK"}], "+", 
+         SuperscriptBox["cK", "2"], "-", 
+         RowBox[{"16", " ", "aK", " ", "bK", " ", "eps"}], "+", 
+         RowBox[{"4", " ", "aK", " ", "cK", " ", "eps"}], "+", 
+         RowBox[{"4", " ", "bK", " ", "cK", " ", "eps"}]}], 
+        RowBox[{"8", " ", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"aK", "+", "bK", "-", "cK"}], ")"}], "2"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "1"}], "+", "eps"}], ")"}]}]]}], ",", 
+      RowBox[{"\<\"qB\"\>", "\[Rule]", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"8", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "aK"}], "-", "bK", "+", "cK"}], ")"}], "2"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "1"}], "+", "eps"}], ")"}]}]], 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"4", " ", 
+           SuperscriptBox["aK", "2"], " ", "bK"}], "+", 
+          RowBox[{"4", " ", "aK", " ", 
+           SuperscriptBox["bK", "2"]}], "-", 
+          RowBox[{"4", " ", 
+           SuperscriptBox["aK", "2"], " ", "cK"}], "-", 
+          RowBox[{"12", " ", "aK", " ", "bK", " ", "cK"}], "-", 
+          RowBox[{"4", " ", 
+           SuperscriptBox["bK", "2"], " ", "cK"}], "+", 
+          RowBox[{"7", " ", "aK", " ", 
+           SuperscriptBox["cK", "2"]}], "+", 
+          RowBox[{"7", " ", "bK", " ", 
+           SuperscriptBox["cK", "2"]}], "-", 
+          RowBox[{"3", " ", 
+           SuperscriptBox["cK", "3"]}], "-", 
+          RowBox[{"8", " ", 
+           SuperscriptBox["aK", "2"], " ", "bK", " ", "eps"}], "-", 
+          RowBox[{"8", " ", "aK", " ", 
+           SuperscriptBox["bK", "2"], " ", "eps"}], "+", 
+          RowBox[{"4", " ", 
+           SuperscriptBox["aK", "2"], " ", "cK", " ", "eps"}], "+", 
+          RowBox[{"16", " ", "aK", " ", "bK", " ", "cK", " ", "eps"}], "+", 
+          RowBox[{"4", " ", 
+           SuperscriptBox["bK", "2"], " ", "cK", " ", "eps"}], "-", 
+          RowBox[{"6", " ", "aK", " ", 
+           SuperscriptBox["cK", "2"], " ", "eps"}], "-", 
+          RowBox[{"6", " ", "bK", " ", 
+           SuperscriptBox["cK", "2"], " ", "eps"}], "+", 
+          RowBox[{"2", " ", 
+           SuperscriptBox["cK", "3"], " ", "eps"}], "-", 
+          RowBox[{"12", " ", "aK", " ", "bK", " ", "x0sq"}], "+", 
+          RowBox[{"4", " ", "aK", " ", "cK", " ", "x0sq"}], "+", 
+          RowBox[{"4", " ", "bK", " ", "cK", " ", "x0sq"}], "-", 
+          RowBox[{
+           SuperscriptBox["cK", "2"], " ", "x0sq"}], "+", 
+          RowBox[{"16", " ", "aK", " ", "bK", " ", "eps", " ", "x0sq"}], "-", 
+          
+          RowBox[{"4", " ", "aK", " ", "cK", " ", "eps", " ", "x0sq"}], "-", 
+          RowBox[{"4", " ", "bK", " ", "cK", " ", "eps", " ", "x0sq"}]}], 
+         ")"}]}]}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"\<\"v=0 mixed system dimensions\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"4", ",", "4"}], "}"}]}], ",", 
+   RowBox[{"\<\"v=-1 mixed system dimensions\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", "3"}], "}"}]}], ",", 
+   RowBox[{"\<\"number of reduction rules\"\>", "\[Rule]", "13"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{4.0013394704581013`*^9},
+ CellLabel->
+  "Out[938]=",ExpressionUUID->"59364b70-625a-4300-85fa-d013e1e75acf"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"genericRules", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"CosmologicalBaikov`aK", "\[Rule]", "2"}], ",", 
+     RowBox[{"CosmologicalBaikov`bK", "\[Rule]", "3"}], ",", 
+     RowBox[{"CosmologicalBaikov`cK", "\[Rule]", "1"}], ",", 
+     RowBox[{"CosmologicalBaikov`x0sq", "\[Rule]", "5"}], ",", 
+     RowBox[{"CosmologicalBaikov`x2sq", "\[Rule]", "7"}], ",", 
+     RowBox[{"CosmologicalBaikov`eps", "\[Rule]", 
+      FractionBox["1", "7"]}]}], "}"}]}], ";", 
+  RowBox[{"VerificationTest", "[", 
+   RowBox[{
+    RowBox[{"Together", "[", 
+     RowBox[{
+      RowBox[{"reduction", "[", "\"\<FourthIBPResidual\>\"", "]"}], "/.", 
+      "\[VeryThinSpace]", "genericRules"}], "]"}], ",", "0", ",", 
+    RowBox[{"TestID", "\[Rule]", "\"\<unused-fourth-IBP-consistency\>\""}]}], 
+   "]"}]}]], "Input",
+ CellLabel->
+  "In[939]:=",ExpressionUUID->"6d06e0b0-faf1-4b9b-80ae-a1d0f8bd231a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["TestObject",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"]], 
+              ButtonFunction :> (Typeset`open$$ = True), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[{
+              InsetBox[
+               BoxData[
+                FormBox[
+                 PaneBox[
+                  DynamicBox[
+                   FEPrivate`FrontEndResource[
+                   "MUnitExpressions", "SuccessIcon"]], Alignment -> Center, 
+                  ImageSize -> 
+                  Dynamic[{
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], TraditionalForm]]]}, 
+             PlotRange -> {{0, 1}, {0, 1}}, Background -> GrayLevel[0.93], 
+             Axes -> False, AspectRatio -> 1, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}], Frame -> True, FrameTicks -> None, 
+             FrameStyle -> Directive[
+               Thickness[Tiny], 
+               GrayLevel[0.55]]], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Outcome: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Success\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Test ID: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  
+                  PaneSelectorBox[{
+                   False -> TagBox[
+                    "\"unused-fourth-IBP-consistency\"", HoldForm], True -> 
+                    StyleBox[
+                    TagBox[
+                    TagBox[
+                    TooltipBox[
+                    TagBox["\"unused-fourth-IBP-consistency\"", HoldForm], 
+                    "\"Copy to clipboard.\"", TooltipStyle -> "TextStyling"], 
+                    Annotation[#, "Copy to clipboard.", "Tooltip"]& ], 
+                    EventHandlerTag[{"MouseClicked" :> CopyToClipboard[
+                    Unevaluated["unused-fourth-IBP-consistency"]], Method -> 
+                    "Preemptive", PassEventsDown -> Automatic, PassEventsUp -> 
+                    True}]], Background -> GrayLevel[0.85], StripOnInput -> 
+                    False]}, 
+                   Dynamic[
+                    CurrentValue["MouseOver"]], ImageSize -> Automatic, 
+                   FrameMargins -> 0], "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"]], 
+              ButtonFunction :> (Typeset`open$$ = False), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[{
+              InsetBox[
+               BoxData[
+                FormBox[
+                 PaneBox[
+                  DynamicBox[
+                   FEPrivate`FrontEndResource[
+                   "MUnitExpressions", "SuccessIcon"]], Alignment -> Center, 
+                  ImageSize -> 
+                  Dynamic[{
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], TraditionalForm]]]}, 
+             PlotRange -> {{0, 1}, {0, 1}}, Background -> GrayLevel[0.93], 
+             Axes -> False, AspectRatio -> 1, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}], Frame -> True, FrameTicks -> None, 
+             FrameStyle -> Directive[
+               Thickness[Tiny], 
+               GrayLevel[0.55]]], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Outcome: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Success\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Test ID: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  
+                  PaneSelectorBox[{
+                   False -> TagBox[
+                    "\"unused-fourth-IBP-consistency\"", HoldForm], True -> 
+                    StyleBox[
+                    TagBox[
+                    TagBox[
+                    TooltipBox[
+                    TagBox["\"unused-fourth-IBP-consistency\"", HoldForm], 
+                    "\"Copy to clipboard.\"", TooltipStyle -> "TextStyling"], 
+                    Annotation[#, "Copy to clipboard.", "Tooltip"]& ], 
+                    EventHandlerTag[{"MouseClicked" :> CopyToClipboard[
+                    Unevaluated["unused-fourth-IBP-consistency"]], Method -> 
+                    "Preemptive", PassEventsDown -> Automatic, PassEventsUp -> 
+                    True}]], Background -> GrayLevel[0.85], StripOnInput -> 
+                    False]}, 
+                   Dynamic[
+                    CurrentValue["MouseOver"]], ImageSize -> Automatic, 
+                   FrameMargins -> 0], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Input: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  PaneBox[
+                   TagBox[
+                    PaneSelectorBox[{False -> RowBox[{"Together", "[", 
+                    RowBox[{
+                    RowBox[{"reduction", "[", "\"FourthIBPResidual\"", "]"}], 
+                    "/.", "\[VeryThinSpace]", "genericRules"}], "]"}], True -> 
+                    StyleBox[
+                    TagBox[
+                    TagBox[
+                    TooltipBox[
+                    RowBox[{"Together", "[", 
+                    RowBox[{
+                    RowBox[{"reduction", "[", "\"FourthIBPResidual\"", "]"}], 
+                    "/.", "\[VeryThinSpace]", "genericRules"}], "]"}], 
+                    "\"Copy to clipboard.\"", TooltipStyle -> "TextStyling"], 
+                    Annotation[#, "Copy to clipboard.", "Tooltip"]& ], 
+                    EventHandlerTag[{"MouseClicked" :> CopyToClipboard[
+                    Unevaluated[
+                    Together[
+                    ReplaceAll[
+                    $CellContext`reduction[
+                    "FourthIBPResidual"], $CellContext`genericRules]]]], 
+                    Method -> "Preemptive", PassEventsDown -> Automatic, 
+                    PassEventsUp -> True}]], Background -> GrayLevel[0.85], 
+                    StripOnInput -> False]}, 
+                    Dynamic[
+                    CurrentValue["MouseOver"]], ImageSize -> Automatic, 
+                    FrameMargins -> 0], Short[#, 
+                    Rational[2, 3]]& ], ImageSize -> {{1, 500}, Automatic}, 
+                   BaselinePosition -> Baseline, ContentPadding -> False, 
+                   FrameMargins -> 0, StripOnInput -> True], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Expected output: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  PaneBox[
+                   TagBox[
+                    PaneSelectorBox[{False -> "0", True -> StyleBox[
+                    TagBox[
+                    TagBox[
+                    TooltipBox[
+                    "0", "\"Copy to clipboard.\"", TooltipStyle -> 
+                    "TextStyling"], 
+                    Annotation[#, "Copy to clipboard.", "Tooltip"]& ], 
+                    EventHandlerTag[{"MouseClicked" :> CopyToClipboard[
+                    Unevaluated[0]], Method -> "Preemptive", PassEventsDown -> 
+                    Automatic, PassEventsUp -> True}]], Background -> 
+                    GrayLevel[0.85], StripOnInput -> False]}, 
+                    Dynamic[
+                    CurrentValue["MouseOver"]], ImageSize -> Automatic, 
+                    FrameMargins -> 0], Short[#, 
+                    Rational[2, 3]]& ], ImageSize -> {{1, 500}, Automatic}, 
+                   BaselinePosition -> Baseline, ContentPadding -> False, 
+                   FrameMargins -> 0, StripOnInput -> True], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Actual output: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  PaneBox[
+                   TagBox[
+                    PaneSelectorBox[{False -> "0", True -> StyleBox[
+                    TagBox[
+                    TagBox[
+                    TooltipBox[
+                    "0", "\"Copy to clipboard.\"", TooltipStyle -> 
+                    "TextStyling"], 
+                    Annotation[#, "Copy to clipboard.", "Tooltip"]& ], 
+                    EventHandlerTag[{"MouseClicked" :> CopyToClipboard[
+                    Unevaluated[0]], Method -> "Preemptive", PassEventsDown -> 
+                    Automatic, PassEventsUp -> True}]], Background -> 
+                    GrayLevel[0.85], StripOnInput -> False]}, 
+                    Dynamic[
+                    CurrentValue["MouseOver"]], ImageSize -> Automatic, 
+                    FrameMargins -> 0], Short[#, 
+                    Rational[2, 3]]& ], ImageSize -> {{1, 500}, Automatic}, 
+                   BaselinePosition -> Baseline, ContentPadding -> False, 
+                   FrameMargins -> 0, StripOnInput -> True], 
+                  "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  TestObject[<|
+   "MetaInformation" -> None, "AbsoluteTime" -> 
+    4.001339495109212`15.655810385639965*^9, "SameTest" -> SameQ, 
+    "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
+    DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
+    "CreationID" -> "cb645306-cc7c-45e9-a8cb-8d2a21925a54", "TestID" -> 
+    "unused-fourth-IBP-consistency", "TestFileName" -> "", "EvaluationID" -> 
+    "7f3c7f17-d0f2-4199-b3ad-2dcf2be78c78", "Input" -> HoldForm[
+      Together[
+       ReplaceAll[
+        $CellContext`reduction[
+        "FourthIBPResidual"], $CellContext`genericRules]]], 
+    "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[0], 
+    "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 2.168101`6.486594507580709, 
+    "CPUTimeUsed" -> 2.1615730000012263`, "MemoryUsed" -> 5144, 
+    "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[0], "Outcome" -> 
+    "Success", "FailureType" -> None|>],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{4.001339497282826*^9},
+ CellLabel->
+  "Out[939]=",ExpressionUUID->"721a46c8-0112-45b2-95b2-019562e7892a"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["7. The exact five-master connection", "Section",ExpressionUUID->"9c627a04-3840-4aa8-b869-74c8b22d393f"],
+
+Cell["\<\
+The result is partial_a m=A_a m. The first three rows are compact; the last \
+two are exact rational functions generated by the mixed systems. Together may \
+be applied entrywise when a single rational denominator is desired.\
+\>", "Text",ExpressionUUID->"13e6ac20-69d8-4385-933d-5e1db3aa2323"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"connection", "=", 
+   RowBox[{"CosmologicalBaikov`DifferentialMatrixA", "[", "]"}]}], ";", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\"\<dimensions\>\"", "\[Rule]", 
+     RowBox[{"Dimensions", "[", "connection", "]"}]}], ",", 
+    RowBox[{"\"\<contains unreduced integrals\>\"", "\[Rule]", 
+     RowBox[{"!", 
+      RowBox[{"FreeQ", "[", 
+       RowBox[{"connection", ",", "_CosmologicalBaikov`CBI"}], "]"}]}]}], ",", 
+    RowBox[{"\"\<first three rows\>\"", "\[Rule]", 
+     TagBox[
+      RowBox[{"Take", "[", 
+       RowBox[{"connection", ",", "3"}], "]"}],
+      Function[BoxForm`e$, 
+       MatrixForm[BoxForm`e$]]]}]}], "}"}]}]], "Input",ExpressionUUID->\
+"fb186ae8-7213-4fa0-a7d2-ecd6c4ef0332"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"numericalConnection", "=", 
+   RowBox[{"CosmologicalBaikov`NumericalCrossCheck", "[", "]"}]}], ";", 
+  TagBox["numericalConnection",
+   Function[BoxForm`e$, 
+    MatrixForm[BoxForm`e$]]]}]], "Input",ExpressionUUID->"f458c482-3b70-4bbc-\
+bc99-e2a3dae4175a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["8. Algebraic top-sector identity", "Section",ExpressionUUID->"159a345f-2819-428c-be20-4f58af486ee7"],
+
+Cell["\<\
+The corrected analogue of equation (5) expresses the derivative of the scalar \
+three-denominator integral through its three two-denominator pinches. Da is \
+an inert derivative head in this identity.\
+\>", "Text",ExpressionUUID->"2c11999a-7315-4ca4-9661-e4889478b920"],
+
+Cell[BoxData[
+ RowBox[{"CosmologicalBaikov`TopSectorIdentity", "[", "]"}]], "Input",Expressi\
+onUUID->"6f157853-ab55-45b8-a272-80a25fcf24f6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["9. Leading singularities of the top I110 sector", "Section",ExpressionUUID->"bf1b9a5f-c2a9-428c-a0da-7fb257af0832"],
+
+Cell["\<\
+On D1=D2=0 the remaining Baikov coordinate is z=D4. The cut Gram polynomial \
+has two roots zPlus,zMinus. Since the numerator master has one factor of D4, \
+the combinations M5-zPlus M4 and M5-zMinus M4 isolate the two branches.\
+\>", "Text",ExpressionUUID->"5313a1d1-082a-47ff-9270-00ce63c4363e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"cutLocations", "=", 
+   RowBox[{"CosmologicalBaikov`LeadingSingularityLocations", "[", "]"}]}], ";", 
+  RowBox[{"cutBasis", "=", 
+   RowBox[{"CosmologicalBaikov`LeadingSingularityBasisMatrix", "[", "]"}]}], ";", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\"\<cut polynomial\>\"", "\[Rule]", 
+     RowBox[{"CosmologicalBaikov`CutGramPolynomial", "[", "z", "]"}]}], ",", 
+    RowBox[{"\"\<cut locations\>\"", "\[Rule]", "cutLocations"}], ",", 
+    RowBox[{"\"\<zeros\>\"", "\[Rule]", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"CosmologicalBaikov`CutGramPolynomial", "/@", "cutLocations"}], 
+      "]"}]}], ",", 
+    RowBox[{"\"\<basis matrix\>\"", "\[Rule]", 
+     TagBox["cutBasis",
+      Function[BoxForm`e$, 
+       MatrixForm[BoxForm`e$]]]}], ",", 
+    RowBox[{"\"\<branch-adapted masters\>\"", "\[Rule]", 
+     RowBox[{"cutBasis", ".", 
+      RowBox[{"masters", "\[LeftDoubleBracket]", 
+       RowBox[{"4", ";;", "5"}], "\[RightDoubleBracket]"}]}]}]}], 
+   "}"}]}]], "Input",ExpressionUUID->"c721925e-2ee6-4e9b-a9ef-5100c0934b85"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"topBlock", "=", 
+   RowBox[{"connection", "\[LeftDoubleBracket]", 
+    RowBox[{
+     RowBox[{"4", ";;", "5"}], ",", 
+     RowBox[{"4", ";;", "5"}]}], "\[RightDoubleBracket]"}]}], ";", 
+  RowBox[{"epsilonZeroRules", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{
+     RowBox[{"DeleteCases", "[", 
+      RowBox[{"genericRules", ",", 
+       RowBox[{"HoldPattern", "[", 
+        RowBox[{"CosmologicalBaikov`eps", "\[Rule]", "_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"CosmologicalBaikov`eps", "\[Rule]", "0"}], "}"}]}], "]"}]}], ";", 
+  RowBox[{"transformedTop", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{"Together", ",", 
+     RowBox[{
+      RowBox[{"cutBasis", ".", "topBlock", ".", 
+       TemplateBox[{"cutBasis"},
+        "Inverse"]}], "/.", "\[VeryThinSpace]", "epsilonZeroRules"}], ",", 
+     RowBox[{"{", "2", "}"}]}], "]"}]}], ";", 
+  RowBox[{"{", 
+   RowBox[{
+    TagBox["transformedTop",
+     Function[BoxForm`e$, 
+      MatrixForm[BoxForm`e$]]], ",", 
+    RowBox[{"VerificationTest", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"transformedTop", "\[LeftDoubleBracket]", 
+         RowBox[{"1", ",", "2"}], "\[RightDoubleBracket]"}], ",", 
+        RowBox[{"transformedTop", "\[LeftDoubleBracket]", 
+         RowBox[{"2", ",", "1"}], "\[RightDoubleBracket]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}], ",", 
+      RowBox[{
+      "TestID", 
+       "\[Rule]", \
+"\"\<epsilon-zero-leading-singularity-diagonalization\>\""}]}], "]"}]}], 
+   "}"}]}]], "Input",ExpressionUUID->"2e94151c-48d8-4cf7-a0ff-f4966223fa89"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["10. Exact finite-epsilon triangularization", "Section",ExpressionUUID->"7126bdfc-e553-4435-9dd6-1e1feda9222e"],
+
+Cell["\<\
+At finite epsilon the algebraic leading-singularity basis generally leaves \
+mixing proportional to epsilon. An a-dependent combination M5+rho(a) M4 is \
+exactly triangular when rho obeys the Riccati equation below. \
+TransformConnection includes the required gauge term (partial_a T) T^(-1).\
+\>", "Text",ExpressionUUID->"f7c615b2-e50e-4274-bde5-7eed63f4a0ac"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"rho", ",", "aa"}], "]"}], ";", 
+  RowBox[{"riccatiEquation", "=", 
+   RowBox[{"CosmologicalBaikov`TriangularizingRiccatiEquation", "[", 
+    RowBox[{
+     RowBox[{"topBlock", "/.", "\[VeryThinSpace]", 
+      RowBox[{"CosmologicalBaikov`aK", "\[Rule]", "aa"}]}], ",", "rho", ",", 
+     "aa"}], "]"}]}], ";", 
+  RowBox[{"riccatiTransform", "=", 
+   RowBox[{"CosmologicalBaikov`TriangularizingBasisMatrix", "[", 
+    RowBox[{"rho", ",", "aa"}], "]"}]}], ";", 
+  RowBox[{"{", 
+   RowBox[{"riccatiEquation", ",", 
+    TagBox["riccatiTransform",
+     Function[BoxForm`e$, 
+      MatrixForm[BoxForm`e$]]]}], "}"}]}]], "Input",ExpressionUUID->"d76f87e0-\
+eef9-4884-864e-2157c19c1ec4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["11. Assumptions and regression tests", "Section",ExpressionUUID->"a265aa51-f8bb-4ced-97ad-bb36b90866ca"],
+
+Cell[BoxData[
+ RowBox[{"CosmologicalBaikov`GenericityConditions", "[", "]"}]], "Input",Expre\
+ssionUUID->"24f5f12e-e9e4-432a-bff1-a7da2ecaf04c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"testFile", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "notebookDirectory", ",", "\"\<CosmologicalBaikovTests.wlt\>\""}], "}"}],
+     "]"}]}], ";", 
+  RowBox[{"TestReport", "[", "testFile", "]"}]}]], "Input",ExpressionUUID->\
+"076fbd98-83f1-4849-9fe9-386a810ff452"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1590, 1050},
+WindowMargins->{{299, Automatic}, {-23, Automatic}},
+WindowTitle->"Cosmological Baikov I110 reduction",
+Magnification->1.25,
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (May 19, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"bec17fe9-bac7-4413-8cd5-610ac07f1359"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[624, 23, 111, 0, 120, "Title",ExpressionUUID->"89496493-3fb1-4eac-8530-fafefec216ec"],
+Cell[738, 25, 427, 6, 69, "Text",ExpressionUUID->"a3ecddec-5b30-4856-8990-bdb485d9214c"],
+Cell[CellGroupData[{
+Cell[1190, 35, 93, 0, 82, "Section",ExpressionUUID->"0add5d7a-e37b-4e82-9e6c-7fbd85675add"],
+Cell[1286, 37, 603, 16, 87, "Input",ExpressionUUID->"7e271500-8772-444e-b77a-d612a2bf4093"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1926, 58, 98, 0, 82, "Section",ExpressionUUID->"08a45f13-e64c-4b88-ad9b-e763f4524ee0"],
+Cell[2027, 60, 316, 5, 69, "Text",ExpressionUUID->"2cc58603-ca51-4a12-bb80-b8772bf10f3c"],
+Cell[CellGroupData[{
+Cell[2368, 69, 565, 13, 62, "Input",ExpressionUUID->"40d7a0c5-47d3-465d-bec1-3d8baee30256"],
+Cell[2936, 84, 985, 28, 58, "Output",ExpressionUUID->"ba06b02f-3bc7-45d7-9ef3-205f3a73673b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3958, 117, 1717, 48, 273, "Input",ExpressionUUID->"3131d04b-8685-4836-8bce-0920d2efa947"],
+Cell[5678, 167, 12569, 254, 73, "Output",ExpressionUUID->"c33fa828-9035-4717-927e-6a6d9ebf286d"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18296, 427, 89, 0, 82, "Section",ExpressionUUID->"5811eeab-505b-42d8-815c-174b91694958"],
+Cell[18388, 429, 182, 3, 42, "Text",ExpressionUUID->"a80cc15e-119d-4a96-b34b-8a00cef89b82"],
+Cell[CellGroupData[{
+Cell[18595, 436, 253, 6, 36, "Input",ExpressionUUID->"444e9292-79a5-424e-97cd-3a377b71c43e"],
+Cell[18851, 444, 766, 25, 122, "Output",ExpressionUUID->"e1b51e3e-f6c9-4eb7-a1fe-2b1d119cfc88"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19666, 475, 114, 0, 82, "Section",ExpressionUUID->"3bc4d7be-70e7-4b05-ae99-aa3992920c0a"],
+Cell[19783, 477, 323, 5, 69, "Text",ExpressionUUID->"4b6446a8-4a6b-48c4-8264-67e64a0edbc9"],
+Cell[CellGroupData[{
+Cell[20131, 486, 466, 10, 36, "Input",ExpressionUUID->"cd25856d-ca12-468b-bf36-c1f4c0035721"],
+Cell[20600, 498, 5300, 138, 221, "Output",ExpressionUUID->"aa1b230b-4f1f-499b-9275-8b40295573c6"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25949, 642, 116, 0, 82, "Section",ExpressionUUID->"2cabc76c-92d0-4cff-9bcf-24667db54501"],
+Cell[26068, 644, 275, 4, 69, "Text",ExpressionUUID->"889f4de4-3644-4774-bc73-a37e34787cbb"],
+Cell[CellGroupData[{
+Cell[26368, 652, 950, 23, 113, "Input",ExpressionUUID->"48f44b77-4942-45bc-a5fa-b6dbfa850826"],
+Cell[27321, 677, 3054, 75, 126, "Output",ExpressionUUID->"ede10464-1ef6-4a9f-9dcf-6529df8cd3f3"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30424, 758, 105, 0, 82, "Section",ExpressionUUID->"28d67ad4-c075-416c-aa2c-7404ccfa5c88"],
+Cell[30532, 760, 361, 5, 69, "Text",ExpressionUUID->"101b4328-565f-4b14-944d-cf64b1cf0e28"],
+Cell[CellGroupData[{
+Cell[30918, 769, 1054, 23, 87, "Input",ExpressionUUID->"9e000d1c-e2b6-43fe-9412-11a77b3535b8"],
+Cell[31975, 794, 5338, 134, 214, "Output",ExpressionUUID->"59364b70-625a-4300-85fa-d013e1e75acf"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37350, 933, 916, 21, 116, "Input",ExpressionUUID->"6d06e0b0-faf1-4b9b-80ae-a1d0f8bd231a"],
+Cell[38269, 956, 13001, 266, 73, "Output",ExpressionUUID->"721a46c8-0112-45b2-95b2-019562e7892a"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[51319, 1228, 109, 0, 82, "Section",ExpressionUUID->"9c627a04-3840-4aa8-b869-74c8b22d393f"],
+Cell[51431, 1230, 304, 4, 69, "Text",ExpressionUUID->"13e6ac20-69d8-4385-933d-5e1db3aa2323"],
+Cell[51738, 1236, 735, 18, 87, "Input",ExpressionUUID->"fb186ae8-7213-4fa0-a7d2-ecd6c4ef0332"],
+Cell[52476, 1256, 291, 7, 36, "Input",ExpressionUUID->"f458c482-3b70-4bbc-bc99-e2a3dae4175a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52804, 1268, 106, 0, 82, "Section",ExpressionUUID->"159a345f-2819-428c-be20-4f58af486ee7"],
+Cell[52913, 1270, 279, 4, 69, "Text",ExpressionUUID->"2c11999a-7315-4ca4-9661-e4889478b920"],
+Cell[53195, 1276, 141, 2, 36, "Input",ExpressionUUID->"6f157853-ab55-45b8-a272-80a25fcf24f6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[53373, 1283, 121, 0, 82, "Section",ExpressionUUID->"bf1b9a5f-c2a9-428c-a0da-7fb257af0832"],
+Cell[53497, 1285, 307, 4, 69, "Text",ExpressionUUID->"5313a1d1-082a-47ff-9270-00ce63c4363e"],
+Cell[53807, 1291, 1071, 23, 113, "Input",ExpressionUUID->"c721925e-2ee6-4e9b-a9ef-5100c0934b85"],
+Cell[54881, 1316, 1628, 43, 116, "Input",ExpressionUUID->"2e94151c-48d8-4cf7-a0ff-f4966223fa89"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[56546, 1364, 116, 0, 82, "Section",ExpressionUUID->"7126bdfc-e553-4435-9dd6-1e1feda9222e"],
+Cell[56665, 1366, 371, 5, 69, "Text",ExpressionUUID->"f7c615b2-e50e-4274-bde5-7eed63f4a0ac"],
+Cell[57039, 1373, 737, 18, 113, "Input",ExpressionUUID->"d76f87e0-eef9-4884-864e-2157c19c1ec4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[57813, 1396, 110, 0, 82, "Section",ExpressionUUID->"a265aa51-f8bb-4ced-97ad-bb36b90866ca"],
+Cell[57926, 1398, 144, 2, 36, "Input",ExpressionUUID->"24f5f12e-e9e4-432a-bff1-a7da2ecaf04c"],
+Cell[58073, 1402, 332, 9, 36, "Input",ExpressionUUID->"076fbd98-83f1-4849-9fe9-386a810ff452"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

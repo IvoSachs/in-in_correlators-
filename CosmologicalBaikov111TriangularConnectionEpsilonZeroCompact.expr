@@ -1,0 +1,254 @@
+{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {-(2*aK^2 - 2*aK*x2sq)^(-1), -1/2*1/aK, 
+  0, 0, 0, 0, 0, 0, 0, 0, 0}, {1/(2*(aK + bK - cK)*(-aK - bK + cK + x0sq)), 
+  0, -1/2*1/(aK + bK - cK), 0, 0, 0, 0, 0, 0, 0, 0}, 
+ {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+ {(8*bK^3*x2sq*(-cK + 4*x2sq + 2*Sqrt[x0sq*x2sq]) + 
+    2*bK*cK*(2*cK^3 + cK^2*(x0sq - 19*x2sq + 4*Sqrt[x0sq*x2sq]) - 
+      8*x2sq*(x0sq^2 - 3*x0sq*x2sq + 2*x2sq*(x2sq - Sqrt[x0sq*x2sq])) + 
+      2*cK*(x2sq*(22*x2sq - 3*Sqrt[x0sq*x2sq]) + 
+        x0sq*(-14*x2sq + Sqrt[x0sq*x2sq]))) + 
+    cK^2*(-2*cK^3 + cK^2*(-2*x0sq + 15*x2sq - 4*Sqrt[x0sq*x2sq]) + 
+      16*(x0sq - x2sq)*x2sq*(x0sq - x2sq + Sqrt[x0sq*x2sq]) - 
+      4*cK*(x2sq*(8*x2sq - 3*Sqrt[x0sq*x2sq]) + 
+        x0sq*(-8*x2sq + Sqrt[x0sq*x2sq]))) - 
+    2*bK^2*(cK^3 + 2*cK^2*(-8*x2sq + Sqrt[x0sq*x2sq]) + 
+      4*cK*x2sq*(-3*x0sq + 11*x2sq + 2*Sqrt[x0sq*x2sq]) + 
+      8*x2sq*(x2sq*(-x2sq + Sqrt[x0sq*x2sq]) + 
+        x0sq*(2*x2sq + Sqrt[x0sq*x2sq]))) - 
+    4*aK^2*(-4*bK^3 + 4*(x0sq - x2sq)^2*(-x2sq + Sqrt[x0sq*x2sq]) + 
+      2*cK*(x0sq - x2sq)*(x0sq - 3*x2sq + 2*Sqrt[x0sq*x2sq]) + 
+      cK^2*(-x0sq - x2sq + 2*Sqrt[x0sq*x2sq]) + 
+      2*bK^2*(cK + 4*x0sq + 4*x2sq + 2*Sqrt[x0sq*x2sq]) + 
+      bK*(cK^2 - 4*cK*(x0sq + 2*x2sq + Sqrt[x0sq*x2sq]) - 
+        4*x0sq*(x0sq - 3*x2sq + 2*Sqrt[x0sq*x2sq]))) + 
+    aK*(4*bK^2*(-5*cK^2 - 4*cK*x0sq + 18*cK*x2sq + 12*x0sq*x2sq + 8*x2sq^2 + 
+        8*cK*Sqrt[x0sq*x2sq] + 8*x0sq*Sqrt[x0sq*x2sq] + 
+        4*x2sq*Sqrt[x0sq*x2sq]) + 
+      8*bK^3*(cK - 2*(3*x2sq + Sqrt[x0sq*x2sq])) - 
+      2*bK*(-5*cK^3 + 2*cK^2*(-7*x0sq + 3*x2sq + 7*Sqrt[x0sq*x2sq]) + 
+        4*cK*(-x0sq^2 - x0sq*x2sq + 10*x2sq^2 + 6*x0sq*Sqrt[x0sq*x2sq] - 
+          2*x2sq*Sqrt[x0sq*x2sq]) + 8*(-2*x2sq^3 + x0sq^2*Sqrt[x0sq*x2sq] + 
+          2*x2sq^2*Sqrt[x0sq*x2sq] - (x0sq*x2sq)^(3/2))) + 
+      cK*(cK^3 + 16*(x0sq - 2*x2sq)*(x0sq - x2sq)*(-x2sq + Sqrt[x0sq*x2sq]) + 
+        2*cK^2*(-5*x0sq - 9*x2sq + 6*Sqrt[x0sq*x2sq]) + 
+        4*cK*(-2*x0sq^2 + 7*x2sq*(2*x2sq - Sqrt[x0sq*x2sq]) + 
+          5*x0sq*(-2*x2sq + Sqrt[x0sq*x2sq])))))/
+   (2*(aK + bK - cK)*(aK + bK - cK - x0sq)*(aK - x2sq)*
+    ((cK^2 + 4*aK*(-bK + x0sq))^2 - 8*(4*aK^2*(bK + x0sq) + 
+       cK^2*(-bK + cK + 2*x0sq) + aK*(4*bK^2 - 4*bK*(cK + x0sq) - 
+         cK*(cK + 4*x0sq)))*x2sq + 16*(aK + bK - cK)^2*x2sq^2)), 0, 
+  (-16*bK^3*x2sq + 4*bK^2*(-cK^2 + 8*cK*x2sq + 4*x0sq*x2sq - 
+      4*cK*Sqrt[x0sq*x2sq] + 8*x2sq*Sqrt[x0sq*x2sq]) - 
+    cK^2*(cK^2 + 16*(x0sq - x2sq)*Sqrt[x0sq*x2sq] + 
+      4*cK*(x0sq - x2sq + 2*Sqrt[x0sq*x2sq])) + 
+    4*bK*cK*(cK^2 + 4*(x0sq - 3*x2sq)*Sqrt[x0sq*x2sq] + 
+      cK*(x0sq - 5*x2sq + 6*Sqrt[x0sq*x2sq])) + 
+    4*aK*(4*bK^3 - 4*bK^2*(cK + 2*x0sq + x2sq) + 
+      bK*(cK^2 + 4*x0sq*(x0sq - 3*x2sq) - 4*cK*Sqrt[x0sq*x2sq] + 
+        8*x2sq*Sqrt[x0sq*x2sq] + 4*cK*(2*x0sq + x2sq)) + 
+      cK*(2*cK*Sqrt[x0sq*x2sq] - cK*(x0sq + x2sq) + 4*(x0sq - x2sq)*
+         (-x0sq + Sqrt[x0sq*x2sq]))))/(2*(aK + bK - cK)*
+    ((cK^2 + 4*aK*(-bK + x0sq))^2 - 8*(4*aK^2*(bK + x0sq) + 
+       cK^2*(-bK + cK + 2*x0sq) + aK*(4*bK^2 - 4*bK*(cK + x0sq) - 
+         cK*(cK + 4*x0sq)))*x2sq + 16*(aK + bK - cK)^2*x2sq^2)), 0, 
+  (-2*(4*bK^2*(aK - x2sq)*Sqrt[x0sq*x2sq] + 4*aK*(x0sq - x2sq)^2*
+      Sqrt[x0sq*x2sq] + 4*cK*(x0sq - x2sq)*x2sq*(x0sq + Sqrt[x0sq*x2sq]) + 
+     cK^2*(2*x0sq*x2sq + x0sq*Sqrt[x0sq*x2sq] + x2sq*Sqrt[x0sq*x2sq]) + 
+     bK*(-(cK^2*Sqrt[x0sq*x2sq]) - 8*aK*x0sq*Sqrt[x0sq*x2sq] + 
+       4*x2sq*Sqrt[x0sq*x2sq]*(-2*aK + x2sq) + 
+       4*cK*x2sq*(-x0sq + Sqrt[x0sq*x2sq]) + 4*x0sq*x2sq*
+        (2*x2sq + Sqrt[x0sq*x2sq]))))/(Sqrt[x0sq*x2sq]*
+    ((cK^2 + 4*aK*(-bK + x0sq))^2 - 8*(4*aK^2*(bK + x0sq) + 
+       cK^2*(-bK + cK + 2*x0sq) + aK*(4*bK^2 - 4*bK*(cK + x0sq) - 
+         cK*(cK + 4*x0sq)))*x2sq + 16*(aK + bK - cK)^2*x2sq^2)), 0, 0, 0, 0, 
+  0, 0}, {(-8*bK^3*x2sq*(cK - 4*x2sq + 2*Sqrt[x0sq*x2sq]) + 
+    cK^2*(-2*cK^3 - 16*(x0sq - x2sq)*x2sq*(-x0sq + x2sq + Sqrt[x0sq*x2sq]) + 
+      4*cK*x0sq*(8*x2sq + Sqrt[x0sq*x2sq]) - 
+      4*cK*x2sq*(8*x2sq + 3*Sqrt[x0sq*x2sq]) + 
+      cK^2*(-2*x0sq + 15*x2sq + 4*Sqrt[x0sq*x2sq])) + 
+    4*aK^2*(4*bK^3 + 4*(x0sq - x2sq)^2*(x2sq + Sqrt[x0sq*x2sq]) + 
+      cK^2*(x0sq + x2sq + 2*Sqrt[x0sq*x2sq]) + 2*cK*(x0sq - x2sq)*
+       (-x0sq + 3*x2sq + 2*Sqrt[x0sq*x2sq]) + 
+      bK^2*(-2*cK - 8*x0sq - 8*x2sq + 4*Sqrt[x0sq*x2sq]) - 
+      bK*(cK^2 - 4*x0sq*(x0sq - 3*x2sq - 2*Sqrt[x0sq*x2sq]) + 
+        4*cK*(-x0sq - 2*x2sq + Sqrt[x0sq*x2sq]))) + 
+    2*bK^2*(-cK^3 + 2*cK^2*(8*x2sq + Sqrt[x0sq*x2sq]) + 
+      4*cK*x2sq*(3*x0sq - 11*x2sq + 2*Sqrt[x0sq*x2sq]) + 
+      8*x2sq*(x0sq*(-2*x2sq + Sqrt[x0sq*x2sq]) + 
+        x2sq*(x2sq + Sqrt[x0sq*x2sq]))) + 
+    2*bK*cK*(2*cK^3 + cK^2*(x0sq - 19*x2sq - 4*Sqrt[x0sq*x2sq]) - 
+      8*x2sq*(x0sq^2 - 3*x0sq*x2sq + 2*x2sq*(x2sq + Sqrt[x0sq*x2sq])) + 
+      cK*(-2*x0sq*(14*x2sq + Sqrt[x0sq*x2sq]) + 
+        2*x2sq*(22*x2sq + 3*Sqrt[x0sq*x2sq]))) + 
+    aK*(8*bK^3*(cK - 6*x2sq + 2*Sqrt[x0sq*x2sq]) - 
+      4*bK^2*(5*cK^2 + 4*x0sq*(cK - 3*x2sq) - 18*cK*x2sq - 8*x2sq^2 + 
+        8*cK*Sqrt[x0sq*x2sq] + 8*x0sq*Sqrt[x0sq*x2sq] + 
+        4*x2sq*Sqrt[x0sq*x2sq]) + cK*(cK^3 - 16*(x0sq - 2*x2sq)*(x0sq - x2sq)*
+         (x2sq + Sqrt[x0sq*x2sq]) - 2*cK^2*(5*x0sq + 9*x2sq + 
+          6*Sqrt[x0sq*x2sq]) - 4*cK*(2*x0sq^2 + 
+          5*x0sq*(2*x2sq + Sqrt[x0sq*x2sq]) - 
+          7*x2sq*(2*x2sq + Sqrt[x0sq*x2sq]))) + 
+      2*bK*(5*cK^3 + 8*x0sq^2*Sqrt[x0sq*x2sq] + 
+        2*cK^2*(7*x0sq - 3*x2sq + 7*Sqrt[x0sq*x2sq]) + 
+        8*x2sq*(-(x0sq*Sqrt[x0sq*x2sq]) + 2*x2sq*(x2sq + Sqrt[x0sq*x2sq])) + 
+        4*cK*(x0sq^2 - 2*x2sq*(5*x2sq + Sqrt[x0sq*x2sq]) + 
+          x0sq*(x2sq + 6*Sqrt[x0sq*x2sq])))))/
+   (2*(aK + bK - cK)*(aK + bK - cK - x0sq)*(aK - x2sq)*
+    ((cK^2 + 4*aK*(-bK + x0sq))^2 - 8*(4*aK^2*(bK + x0sq) + 
+       cK^2*(-bK + cK + 2*x0sq) + aK*(4*bK^2 - 4*bK*(cK + x0sq) - 
+         cK*(cK + 4*x0sq)))*x2sq + 16*(aK + bK - cK)^2*x2sq^2)), 0, 
+  -1/2*(16*bK^3*x2sq - 4*bK*cK*(cK^2 - 4*(x0sq - 3*x2sq)*Sqrt[x0sq*x2sq] + 
+       cK*(x0sq - 5*x2sq - 6*Sqrt[x0sq*x2sq])) + 
+     4*bK^2*(cK^2 - 4*x0sq*x2sq + 8*x2sq*Sqrt[x0sq*x2sq] - 
+       4*cK*(2*x2sq + Sqrt[x0sq*x2sq])) + 
+     cK^2*(cK^2 + 16*Sqrt[x0sq*x2sq]*(-x0sq + x2sq) - 
+       4*cK*(-x0sq + x2sq + 2*Sqrt[x0sq*x2sq])) - 
+     4*aK*(4*bK^3 - 4*bK^2*(cK + 2*x0sq + x2sq) - 
+       cK*(4*(x0sq - x2sq)*(x0sq + Sqrt[x0sq*x2sq]) + 
+         cK*(x0sq + x2sq + 2*Sqrt[x0sq*x2sq])) + 
+       bK*(cK^2 + 4*cK*(2*x0sq + x2sq + Sqrt[x0sq*x2sq]) + 
+         4*(x0sq^2 - 3*x0sq*x2sq - 2*x2sq*Sqrt[x0sq*x2sq]))))/
+    ((aK + bK - cK)*((cK^2 + 4*aK*(-bK + x0sq))^2 - 
+      8*(4*aK^2*(bK + x0sq) + cK^2*(-bK + cK + 2*x0sq) + 
+        aK*(4*bK^2 - 4*bK*(cK + x0sq) - cK*(cK + 4*x0sq)))*x2sq + 
+      16*(aK + bK - cK)^2*x2sq^2)), 0, 0, 
+  (-2*(4*bK^2*(aK - x2sq)*Sqrt[x0sq*x2sq] + 4*aK*(x0sq - x2sq)^2*
+      Sqrt[x0sq*x2sq] + 4*cK*(x0sq - x2sq)*x2sq*(-x0sq + Sqrt[x0sq*x2sq]) + 
+     cK^2*(-2*x0sq*x2sq + x0sq*Sqrt[x0sq*x2sq] + x2sq*Sqrt[x0sq*x2sq]) + 
+     bK*(-(cK^2*Sqrt[x0sq*x2sq]) - 8*aK*x0sq*Sqrt[x0sq*x2sq] + 
+       4*x2sq*Sqrt[x0sq*x2sq]*(-2*aK + x2sq) + 
+       4*cK*x2sq*(x0sq + Sqrt[x0sq*x2sq]) + 4*x0sq*x2sq*
+        (-2*x2sq + Sqrt[x0sq*x2sq]))))/(Sqrt[x0sq*x2sq]*
+    ((cK^2 + 4*aK*(-bK + x0sq))^2 - 8*(4*aK^2*(bK + x0sq) + 
+       cK^2*(-bK + cK + 2*x0sq) + aK*(4*bK^2 - 4*bK*(cK + x0sq) - 
+         cK*(cK + 4*x0sq)))*x2sq + 16*(aK + bK - cK)^2*x2sq^2)), 0, 0, 0, 0, 
+  0}, {(16*bK^3*(x0sq + x3sq - 2*Sqrt[x0sq*x3sq]) + 
+    8*aK^2*(-bK + x3sq)*(4*bK - cK - 2*x3sq + 2*Sqrt[x0sq*x3sq]) + 
+    cK^2*(cK + 4*x3sq)*(cK - 4*x3sq + 4*Sqrt[x0sq*x3sq]) + 
+    4*bK^2*(cK^2 + 16*cK*Sqrt[x0sq*x3sq] + 4*x0sq*Sqrt[x0sq*x3sq] + 
+      4*x3sq*Sqrt[x0sq*x3sq] - 2*cK*(3*x0sq + 5*x3sq) - 
+      4*(x0sq^2 + x3sq^2)) - 2*bK*cK*(3*cK^2 + 8*(x0sq + 2*x3sq)*
+       (-x3sq + Sqrt[x0sq*x3sq]) + 6*cK*(-2*x3sq + 3*Sqrt[x0sq*x3sq])) + 
+    2*aK*(-8*bK^3 + 4*bK^2*(3*cK + 6*x0sq + 8*x3sq - 6*Sqrt[x0sq*x3sq]) + 
+      2*bK*(cK^2 + 12*cK*Sqrt[x0sq*x3sq] + 4*x0sq*Sqrt[x0sq*x3sq] + 
+        8*x3sq*Sqrt[x0sq*x3sq] - 8*x3sq*(2*x0sq + x3sq) - 
+        2*cK*(x0sq + 10*x3sq)) - 
+      cK*(cK^2 - 8*x3sq*(x0sq + 2*x3sq - 2*Sqrt[x0sq*x3sq]) + 
+        2*cK*(-2*x3sq + Sqrt[x0sq*x3sq]))))/(2*(aK + bK - cK)*
+    (aK + bK - cK - x0sq)*((-4*aK*bK + cK^2 + 4*bK*x0sq)^2 - 
+     8*(4*aK^2*bK + 4*bK^2*x0sq + cK^2*(cK + 2*x0sq) - bK*cK*(cK + 4*x0sq) + 
+       aK*(4*bK^2 - cK^2 - 4*bK*(cK + x0sq)))*x3sq + 
+     16*(aK + bK - cK)^2*x3sq^2)), 0, 
+  (16*bK^3*(-x0sq - x3sq + 2*Sqrt[x0sq*x3sq]) + 
+    4*aK*(bK - x3sq)*((-2*bK + cK)^2 + 4*bK*x0sq + 8*bK*Sqrt[x0sq*x3sq] - 
+      4*cK*Sqrt[x0sq*x3sq]) - 4*bK^2*(4*x0sq^2 + cK*(cK - 8*x3sq) + 
+      12*cK*Sqrt[x0sq*x3sq] + 8*x3sq*Sqrt[x0sq*x3sq] - 
+      4*x0sq*(cK + 3*x3sq)) + 4*bK*cK*(cK*(cK - 5*x3sq) + 
+      4*cK*Sqrt[x0sq*x3sq] + 12*x3sq*Sqrt[x0sq*x3sq] - 
+      2*x0sq*(cK + 6*x3sq)) - cK^2*(cK^2 - 4*cK*x3sq + 
+      16*x3sq*(-x0sq + Sqrt[x0sq*x3sq])))/(2*(aK + bK - cK)*
+    ((-4*aK*bK + cK^2 + 4*bK*x0sq)^2 - 8*(4*aK^2*bK + 4*bK^2*x0sq + 
+       cK^2*(cK + 2*x0sq) - bK*cK*(cK + 4*x0sq) + 
+       aK*(4*bK^2 - cK^2 - 4*bK*(cK + x0sq)))*x3sq + 
+     16*(aK + bK - cK)^2*x3sq^2)), 0, 0, 0, 
+  (2*(bK - x3sq))/(cK^2 + 4*aK*(-bK + x3sq) - 4*cK*(x3sq + Sqrt[x0sq*x3sq]) + 
+    4*bK*(x0sq + x3sq + 2*Sqrt[x0sq*x3sq])), 0, 0, 0, 0}, 
+ {(16*bK^3*(x0sq + x3sq + 2*Sqrt[x0sq*x3sq]) + cK^2*(cK + 4*x3sq)*
+     (cK - 4*(x3sq + Sqrt[x0sq*x3sq])) - 8*aK^2*(-bK + x3sq)*
+     (-4*bK + cK + 2*(x3sq + Sqrt[x0sq*x3sq])) + 
+    2*bK*cK*(-3*cK^2 + 8*(x0sq + 2*x3sq)*(x3sq + Sqrt[x0sq*x3sq]) + 
+      6*cK*(2*x3sq + 3*Sqrt[x0sq*x3sq])) - 
+    4*bK^2*(-cK^2 + 2*cK*(3*x0sq + 5*x3sq + 8*Sqrt[x0sq*x3sq]) + 
+      4*(x0sq^2 + x0sq*Sqrt[x0sq*x3sq] + x3sq*(x3sq + Sqrt[x0sq*x3sq]))) - 
+    2*aK*(8*bK^3 - 4*bK^2*(3*cK + 6*x0sq + 8*x3sq + 6*Sqrt[x0sq*x3sq]) + 
+      2*bK*(-cK^2 + 8*x3sq*(x3sq + Sqrt[x0sq*x3sq]) + 
+        4*x0sq*(4*x3sq + Sqrt[x0sq*x3sq]) + 2*cK*(x0sq + 10*x3sq + 
+          6*Sqrt[x0sq*x3sq])) + cK*(cK^2 - 2*cK*(2*x3sq + Sqrt[x0sq*x3sq]) - 
+        8*x3sq*(x0sq + 2*(x3sq + Sqrt[x0sq*x3sq])))))/
+   (2*(aK + bK - cK)*(aK + bK - cK - x0sq)*((-4*aK*bK + cK^2 + 4*bK*x0sq)^2 - 
+     8*(4*aK^2*bK + 4*bK^2*x0sq + cK^2*(cK + 2*x0sq) - bK*cK*(cK + 4*x0sq) + 
+       aK*(4*bK^2 - cK^2 - 4*bK*(cK + x0sq)))*x3sq + 
+     16*(aK + bK - cK)^2*x3sq^2)), 0, 
+  (-16*bK^3*(x0sq + x3sq + 2*Sqrt[x0sq*x3sq]) + 
+    4*aK*(bK - x3sq)*((-2*bK + cK)^2 + 4*bK*x0sq - 8*bK*Sqrt[x0sq*x3sq] + 
+      4*cK*Sqrt[x0sq*x3sq]) + cK^2*(-cK^2 + 4*cK*x3sq + 
+      16*x3sq*(x0sq + Sqrt[x0sq*x3sq])) + 
+    4*bK^2*(-cK^2 - 4*x0sq^2 + 12*x0sq*x3sq + 8*x3sq*Sqrt[x0sq*x3sq] + 
+      4*cK*(x0sq + 2*x3sq + 3*Sqrt[x0sq*x3sq])) - 
+    4*bK*cK*(-cK^2 + 12*x3sq*(x0sq + Sqrt[x0sq*x3sq]) + 
+      cK*(2*x0sq + 5*x3sq + 4*Sqrt[x0sq*x3sq])))/
+   (2*(aK + bK - cK)*((-4*aK*bK + cK^2 + 4*bK*x0sq)^2 - 
+     8*(4*aK^2*bK + 4*bK^2*x0sq + cK^2*(cK + 2*x0sq) - bK*cK*(cK + 4*x0sq) + 
+       aK*(4*bK^2 - cK^2 - 4*bK*(cK + x0sq)))*x3sq + 
+     16*(aK + bK - cK)^2*x3sq^2)), 0, 0, 0, 0, 
+  (2*(bK - x3sq))/(4*aK*(-bK + x3sq) + 
+    4*bK*(x0sq + x3sq - 2*Sqrt[x0sq*x3sq]) + 
+    cK*(cK - 4*x3sq + 4*Sqrt[x0sq*x3sq])), 0, 0, 0}, 
+ {-((cK^3 + 4*cK*x2sq*(bK - 2*x3sq) + 2*cK^2*Sqrt[x2sq*x3sq] - 
+     8*bK*x2sq*Sqrt[x2sq*x3sq] + 4*aK*(bK - x3sq)*(-cK + 2*Sqrt[x2sq*x3sq]))/
+    ((aK - x2sq)*((cK^2 + 4*bK*x2sq)^2 - 8*aK*(cK^2 + 4*bK*x2sq)*
+       (bK - x3sq) + 16*aK^2*(bK - x3sq)^2 - 16*cK^2*x2sq*x3sq))), 0, 0, 0, 
+  0, 0, 0, 0, (2*(bK - x3sq))/(cK^2 + 4*bK*x2sq - 4*cK*Sqrt[x2sq*x3sq] + 
+    4*aK*(-bK + x3sq)), 0, 0}, 
+ {-((cK^3 + 4*cK*x2sq*(bK - 2*x3sq) - 2*cK^2*Sqrt[x2sq*x3sq] + 
+     8*bK*x2sq*Sqrt[x2sq*x3sq] + 4*aK*(-bK + x3sq)*(cK + 2*Sqrt[x2sq*x3sq]))/
+    ((aK - x2sq)*((cK^2 + 4*bK*x2sq)^2 - 8*aK*(cK^2 + 4*bK*x2sq)*
+       (bK - x3sq) + 16*aK^2*(bK - x3sq)^2 - 16*cK^2*x2sq*x3sq))), 0, 0, 0, 
+  0, 0, 0, 0, 0, (2*(bK - x3sq))/(cK^2 + 4*bK*x2sq + 4*cK*Sqrt[x2sq*x3sq] + 
+    4*aK*(-bK + x3sq)), 0}, 
+ {(((2*aK - cK)*(-(cK^2*(-bK + cK + x0sq)) + 
+       2*aK*(2*bK^2 + cK^2 - 2*bK*(cK + 2*x0sq) + 2*cK*(x0sq - x2sq) + 
+         2*(x0sq - x2sq)^2) + (-4*bK^2 + 3*cK^2 + 4*(bK + cK)*x0sq)*x2sq + 
+       4*(bK - cK)*x2sq^2))/((aK + bK - cK - x0sq)*(aK - x2sq)*
+      ((cK^2 + 4*aK*(-bK + x0sq))^2 - 8*(4*aK^2*(bK + x0sq) + 
+         cK^2*(-bK + cK + 2*x0sq) + aK*(4*bK^2 - 4*bK*(cK + x0sq) - 
+           cK*(cK + 4*x0sq)))*x2sq + 16*(aK + bK - cK)^2*x2sq^2)) + 
+    (cK*(cK^2 - 4*bK*x2sq + 4*aK*(bK - x3sq)))/
+     ((aK - x2sq)*((cK^2 + 4*bK*x2sq)^2 - 8*aK*(cK^2 + 4*bK*x2sq)*
+        (bK - x3sq) + 16*aK^2*(bK - x3sq)^2 - 16*cK^2*x2sq*x3sq)) + 
+    ((2*bK - cK)*(8*bK^2 + 4*aK*(bK - x3sq) - 4*bK*(2*cK + x0sq + x3sq) + 
+       cK*(cK + 4*x3sq)))/((aK + bK - cK - x0sq)*
+      ((-4*aK*bK + cK^2 + 4*bK*x0sq)^2 - 8*(4*aK^2*bK + 4*bK^2*x0sq + 
+         cK^2*(cK + 2*x0sq) - bK*cK*(cK + 4*x0sq) + 
+         aK*(4*bK^2 - cK^2 - 4*bK*(cK + x0sq)))*x3sq + 
+       16*(aK + bK - cK)^2*x3sq^2)))/TL0, 0, 
+  (2*(-(((2*aK - cK)*(-2*bK*(cK - 2*x2sq) + cK*(cK + 2*x0sq - 2*x2sq)))/
+       ((cK^2 + 4*aK*(-bK + x0sq))^2 - 8*(4*aK^2*(bK + x0sq) + 
+          cK^2*(-bK + cK + 2*x0sq) + aK*(4*bK^2 - 4*bK*(cK + x0sq) - 
+            cK*(cK + 4*x0sq)))*x2sq + 16*(aK + bK - cK)^2*x2sq^2)) - 
+     (2*(-2*bK + cK)^2*(bK - x3sq))/((-4*aK*bK + cK^2 + 4*bK*x0sq)^2 - 
+       8*(4*aK^2*bK + 4*bK^2*x0sq + cK^2*(cK + 2*x0sq) - 
+         bK*cK*(cK + 4*x0sq) + aK*(4*bK^2 - cK^2 - 4*bK*(cK + x0sq)))*x3sq + 
+       16*(aK + bK - cK)^2*x3sq^2)))/TL0, 0, 
+  -1/4*((-2*bK*(cK - 2*x2sq) + cK*(cK + 2*x0sq - 2*x2sq))*
+     (4*bK*x2sq + 4*aK*(-bK + x0sq + x2sq - 2*Sqrt[x0sq*x2sq]) + 
+      cK*(cK - 4*x2sq + 4*Sqrt[x0sq*x2sq])))/(TL0*Sqrt[x0sq*x2sq]*
+     ((cK^2 + 4*aK*(-bK + x0sq))^2 - 8*(4*aK^2*(bK + x0sq) + 
+        cK^2*(-bK + cK + 2*x0sq) + aK*(4*bK^2 - 4*bK*(cK + x0sq) - 
+          cK*(cK + 4*x0sq)))*x2sq + 16*(aK + bK - cK)^2*x2sq^2)), 
+  ((-2*bK*(cK - 2*x2sq) + cK*(cK + 2*x0sq - 2*x2sq))*
+    (cK^2 + 4*bK*x2sq - 4*cK*(x2sq + Sqrt[x0sq*x2sq]) + 
+     4*aK*(-bK + x0sq + x2sq + 2*Sqrt[x0sq*x2sq])))/
+   (4*TL0*Sqrt[x0sq*x2sq]*((cK^2 + 4*aK*(-bK + x0sq))^2 - 
+     8*(4*aK^2*(bK + x0sq) + cK^2*(-bK + cK + 2*x0sq) + 
+       aK*(4*bK^2 - 4*bK*(cK + x0sq) - cK*(cK + 4*x0sq)))*x2sq + 
+     16*(aK + bK - cK)^2*x2sq^2)), 
+  -1/2*((2*bK - cK)*(bK - x3sq)*(4*aK*(-bK + x3sq) + 
+      4*bK*(x0sq + x3sq - 2*Sqrt[x0sq*x3sq]) + 
+      cK*(cK - 4*x3sq + 4*Sqrt[x0sq*x3sq])))/(TL0*Sqrt[x0sq*x3sq]*
+     ((-4*aK*bK + cK^2 + 4*bK*x0sq)^2 - 8*(4*aK^2*bK + 4*bK^2*x0sq + 
+        cK^2*(cK + 2*x0sq) - bK*cK*(cK + 4*x0sq) + 
+        aK*(4*bK^2 - cK^2 - 4*bK*(cK + x0sq)))*x3sq + 
+      16*(aK + bK - cK)^2*x3sq^2)), 
+  ((2*bK - cK)*(bK - x3sq)*(cK^2 + 4*aK*(-bK + x3sq) - 
+     4*cK*(x3sq + Sqrt[x0sq*x3sq]) + 4*bK*(x0sq + x3sq + 2*Sqrt[x0sq*x3sq])))/
+   (2*TL0*Sqrt[x0sq*x3sq]*((-4*aK*bK + cK^2 + 4*bK*x0sq)^2 - 
+     8*(4*aK^2*bK + 4*bK^2*x0sq + cK^2*(cK + 2*x0sq) - bK*cK*(cK + 4*x0sq) + 
+       aK*(4*bK^2 - cK^2 - 4*bK*(cK + x0sq)))*x3sq + 
+     16*(aK + bK - cK)^2*x3sq^2)), 
+  (cK*(-bK + x3sq)*(cK^2 + 4*bK*x2sq + 4*cK*Sqrt[x2sq*x3sq] + 
+     4*aK*(-bK + x3sq)))/(2*TL0*Sqrt[x2sq*x3sq]*((cK^2 + 4*bK*x2sq)^2 - 
+     8*aK*(cK^2 + 4*bK*x2sq)*(bK - x3sq) + 16*aK^2*(bK - x3sq)^2 - 
+     16*cK^2*x2sq*x3sq)), (cK*(bK - x3sq))/
+   (2*TL0*(4*cK*x2sq*x3sq + cK^2*Sqrt[x2sq*x3sq] + 
+     4*Sqrt[x2sq*x3sq]*(bK*x2sq + aK*(-bK + x3sq)))), (bK - x3sq)/(2*TL0)}}

@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{mathtools}
+
+\newcommand{\dd}{\mathrm d}
+\newcommand{\T}{\mathsf T}
+\newcommand{\R}{\mathsf R}
+\newcommand{\LY}{\mathsf L_y}
+\newcommand{\LX}{\mathsf L_x}
+
+\title{Finite bubble-difference reduction of the nested cosmological Baikov integral}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\paragraph{Finite flat-space basis.}
+Put
+\begin{equation}
+ x=Q_2^2=D_5,\qquad y=Q_3^2=D_6,\qquad
+ z=Q_2\!\cdot Q_3=D_4,\qquad
+ s=(Q_2-Q_3)^2=D_{10},\qquad
+ \Lambda=z^2-xy .
+\end{equation}
+The coefficients of the three bubble subtopologies in the
+$\partial_aT_{111}$ equation add to zero.  Their common ultraviolet pole
+and scheme-dependent constant therefore cancel.  A finite basis is
+\begin{equation}
+ \bm f=(1,L_y,L_x,T_{111})^{\mathsf T},\qquad
+ L_y=T_{101}-T_{011}=\log\frac{s}{y},\qquad
+ L_x=T_{110}-T_{011}=\log\frac{s}{x}.
+\end{equation}
+At fixed $p_2,p_3,b,c$, the local connection is
+\begin{equation}
+ \partial_a\bm f=A_a^{\rm flat}\bm f,
+ \qquad
+ A_a^{\rm flat}=
+ \begin{pmatrix}
+ 0&0&0&0\\
+ s^{-1}&0&0&0\\
+ s^{-1}-x^{-1}&0&0&0\\
+ 0&\dfrac{C_y}{2\Lambda}&\dfrac{C_x}{2\Lambda}
+   &\dfrac{y}{2\Lambda}
+ \end{pmatrix},
+ \label{eq:flat-connection}
+\end{equation}
+where
+\begin{equation}
+ C_y=\frac{z}{x}+\frac{y-z}{s},\qquad
+ C_x=\frac{z-y}{s}.
+\end{equation}
+Thus the additional term in the top equation is
+\begin{equation}
+ \frac12\int i_{111}\bigl(C_yL_y+C_xL_x\bigr).
+\end{equation}
+Equation~(24) correctly contains the outer factor $\Lambda^{-j}$ rather
+than $\Lambda^{-j-1/2}$: the evaluated triangle $T_{111}$ already contains
+its leading-singularity factor $\Lambda^{-1/2}$, as is also visible from
+the last diagonal entry in \eqref{eq:flat-connection}.
+
+\paragraph{Master basis.}
+Introduce the two parallel choices on the first and second outer lines,
+\begin{equation}
+ R_0=D_1,\quad R_1=D_{10},\qquad
+ P_0=D_2,\quad P_1=D_5,\qquad Q_0=D_3.
+\end{equation}
+At $\epsilon=0$, the rational sector is an ordinary two-loop vacuum
+family.  Empty and one-line sectors are scaleless.  A convenient ordered
+basis is
+\begin{equation}
+ \bm M_{\R}=
+ \bigl(
+ B^{RP}_{00},B^{RP}_{01},B^{RP}_{10},B^{RP}_{11},
+ B^{RQ}_{0},B^{RQ}_{1},B^{PQ}_{0},B^{PQ}_{1},
+ S_{00},S_{01},S_{10},S_{11}
+ \bigr)^{\mathsf T},
+ \qquad \dim\bm M_{\R}=12,
+\end{equation}
+where $B$ denotes a factorised two-line integral and
+$S_{ij}$ the sunrise integral with denominators $R_iP_jQ_0$.
+
+For either finite logarithm $W=L_y,L_x$, only the four ordinary-vacuum
+topologies are required,
+\begin{equation}
+ \bm M_W=
+ \bigl(B^{RP}_{00}[W],B^{RQ}_{0}[W],B^{PQ}_{0}[W],S_{00}[W]\bigr)^{\mathsf T},
+ \qquad \dim\bm M_W=4.
+\end{equation}
+The triangle carries the effective square-root twist and therefore has
+the same eleven outer masters as the original reduction,
+\begin{align}
+ \bm M_{\T}=\bigl(&I^{000},I^{010},I^{100},I^{001},
+ I^{110},I^{110,-100},I^{101},I^{101,-100},\notag\\
+ &I^{011},I^{011,-100},I^{111}\bigr)[T_{111}]^{\mathsf T},
+ \qquad \dim\bm M_{\T}=11.
+\end{align}
+Consequently the finite nested basis is
+\begin{equation}
+ \bm M=
+ \bigl(\bm M_{\R},\bm M_{L_y},\bm M_{L_x},\bm M_{\T}\bigr)^{\mathsf T},
+ \qquad \dim\bm M=12+4+4+11=31.
+\end{equation}
+
+\paragraph{Connection and triangular form.}
+In this filtration the $a$-connection has the block form
+\begin{equation}
+ \partial_a\bm M=A_a\bm M,
+ \qquad
+ A_a=
+ \begin{pmatrix}
+ A_{\R}       &0       &0       &0\\
+ C_{y\R}      &0       &0       &0\\
+ C_{x\R}      &0       &0       &0\\
+ C_{\T\R}     &C_{\T y}&C_{\T x}&A_{\T}
+ \end{pmatrix}.
+ \label{eq:block-connection}
+\end{equation}
+Here $A_{\R}$ is the explicit $12\times12$ ordinary-vacuum mass
+connection.  With the factorised bubbles ordered before the sunrises it
+is already lower triangular.  The explicit $4\times12$ matrices
+$C_{y\R}$ and $C_{x\R}$ follow from
+\begin{equation}
+ \partial_aL_y=\frac1{D_{10}},\qquad
+ \partial_aL_x=\frac1{D_{10}}-\frac1{D_5},
+\end{equation}
+together with partial fractions in the parallel pairs $(D_1,D_{10})$ and
+$(D_2,D_5)$.  The homogeneous block $A_{\T}$ is precisely the compact
+$11\times11$ connection of the previous square-root-twisted reduction at
+$\epsilon=0$.  The three blocks in the last row of
+\eqref{eq:block-connection} contain the lifted inhomogeneous triangle
+sources; their position is fixed by transcendental weight.
+
+Let $T_{\rm LS}$ be the leading-singularity transformation of the eleven
+triangle masters and set
+\begin{equation}
+ \mathcal T=\operatorname{diag}(\mathbf 1_{12},\mathbf 1_4,
+ \mathbf 1_4,T_{\rm LS}).
+\end{equation}
+The transformed connection is
+\begin{equation}
+ \widetilde A_a=(\partial_a\mathcal T)\mathcal T^{-1}
+ +\mathcal T A_a\mathcal T^{-1}.
+\end{equation}
+Since $A_{\R}$ is lower triangular, the logarithmic diagonal blocks
+vanish, $T_{\rm LS}$ makes $A_{\T}$ lower triangular, and every source
+block lies below the diagonal, the complete $31\times31$ connection is
+lower triangular in this basis.
+
+\end{document}

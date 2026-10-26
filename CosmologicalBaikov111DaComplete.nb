@@ -1,0 +1,367 @@
+Notebook[{Cell["Complete partial_a connection for the I111 sector", "Title"], 
+  Cell["This notebook combines the I110, I101, and I011 pinch reductions with \
+the algebraic top-sector identity to obtain the complete eleven-master \
+differential equation partial_a m=A_a m. It then constructs an algebraic \
+leading-singularity basis which is lower triangular at epsilon=0 and a \
+three-Riccati basis which is exactly lower triangular at finite epsilon.", 
+   "Text"], Cell["1. Load the reduction packages", "Section"], 
+  Cell[BoxData[RowBox[{RowBox[{"ClearAll", "[", "\"Global`*\"", "]"}], ";", 
+      RowBox[{"notebookDirectory", "=", RowBox[{"Quiet", "[", 
+          RowBox[{"Check", "[", RowBox[{RowBox[{"NotebookDirectory", "[", 
+                "]"}], ",", RowBox[{"DirectoryName", "[", "$InputFileName", 
+                "]"}]}], "]"}], "]"}]}], ";", 
+      RowBox[{"Get", "[", RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", RowBox[{"notebookDirectory", ",", 
+              "\"CosmologicalBaikov111.wl\""}], "}"}], "]"}], "]"}], ";"}]], 
+   "Input"], Cell["2. Closed eleven-master basis", "Section"], 
+  Cell["The basis is ordered by topology: the vacuum, the three \
+one-denominator sectors, two masters for each two-denominator pinch, and \
+finally I111. The fourth index of FBI denotes the power of D4; -1 therefore \
+means one D4 numerator.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"fullMasters", "=", 
+        RowBox[{"FullMasterBasis", "[", "]"}]}], ";", 
+      RowBox[{"masterLabels", "=", RowBox[
+         {"{", RowBox[{"\"I000\"", ",", "\"I010\"", ",", "\"I100\"", ",", 
+            "\"I001\"", ",", "\"I110\"", ",", "\"I110[-D4]\"", ",", 
+            "\"I101\"", ",", "\"I101[-D4]\"", ",", "\"I011\"", ",", 
+            "\"I011[-D4]\"", ",", "\"I111\""}], "}"}]}], ";", 
+      RowBox[{"Thread", "[", RowBox[{"masterLabels", "\[Rule]", 
+          "fullMasters"}], "]"}]}]], "Input"], 
+  Cell["3. Obtain the I101 pinch without a new IBP reduction", "Section"], 
+  Cell["Set q2=p3-p2 and q3=p3. The I101 sector becomes an I011 sector with \
+(a,b,c,x2^2,x3^2) mapped to (a+b-c,b,2b-c,x0^2,x3^2). The auxiliary numerator \
+is D4'=D3-D4+b-x3^2, so the transformed numerator master equals I100+(b-x3^2) \
+I101-I101[-D4].", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"Clear", "[", RowBox[{"q2", ",", "q3", ",", 
+          "p2", ",", "p3"}], "]"}], ";", RowBox[{"originalLambdaInQ", "=", 
+        RowBox[{RowBox[{"cK", " ", RowBox[{"(", RowBox[{"q3", "-", "q2"}], 
+              ")"}], " ", "q3"}], "-", RowBox[{"bK", " ", SuperscriptBox[
+             RowBox[{"(", RowBox[{"q3", "-", "q2"}], ")"}], "2"]}], "-", 
+          RowBox[{"aK", " ", SuperscriptBox["q3", "2"]}], "+", 
+          FractionBox[SuperscriptBox["cK", "2"], "4"], "-", 
+          RowBox[{"aK", " ", "bK"}]}]}], ";", 
+      RowBox[{"mappedLambda", "=", RowBox[
+         {RowBox[{RowBox[{"(", RowBox[{RowBox[{"2", " ", "bK"}], "-", "cK"}], 
+              ")"}], " ", "q2", " ", "q3"}], "-", 
+          RowBox[{"bK", " ", SuperscriptBox["q2", "2"]}], "-", 
+          RowBox[{RowBox[{"(", RowBox[{"aK", "+", "bK", "-", "cK"}], ")"}], 
+            " ", SuperscriptBox["q3", "2"]}], "+", 
+          RowBox[{FractionBox["1", "4"], " ", SuperscriptBox[
+             RowBox[{"(", RowBox[{RowBox[{"2", " ", "bK"}], "-", "cK"}], 
+               ")"}], "2"]}], "-", RowBox[
+           {RowBox[{"(", RowBox[{"aK", "+", "bK", "-", "cK"}], ")"}], " ", 
+            "bK"}]}]}], ";", RowBox[{"numeratorMapCheck", "=", 
+        RowBox[{"Expand", "[", RowBox[
+           {RowBox[{RowBox[{"(", RowBox[{"p3", "-", "p2"}], ")"}], " ", 
+              "p3"}], "+", RowBox[{FractionBox["1", "2"], " ", 
+              RowBox[{"(", RowBox[{RowBox[{"2", " ", "bK"}], "-", "cK"}], 
+                ")"}]}], "-", RowBox[{"(", RowBox[{RowBox[{"(", RowBox[
+                   {SuperscriptBox["p3", "2"], "+", "x3sq"}], ")"}], "-", 
+                RowBox[{"(", RowBox[{RowBox[{"p2", " ", "p3"}], "+", 
+                    FractionBox["cK", "2"]}], ")"}], "+", "bK", "-", 
+                "x3sq"}], ")"}]}], "]"}]}], ";", 
+      RowBox[{"{", RowBox[{RowBox[{"I101ParameterRules", "[", "]"}], ",", 
+          TagBox[RowBox[{"I101BasisTransform", "[", "]"}], 
+           Function[BoxForm`e$, MatrixForm[BoxForm`e$]]], ",", 
+          RowBox[{"Expand", "[", RowBox[{"originalLambdaInQ", "-", 
+              "mappedLambda"}], "]"}], ",", "numeratorMapCheck"}], "}"}]}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"connection101", "=", 
+        RowBox[{"DifferentialMatrixA101", "[", "]"}]}], ";", 
+      RowBox[{"overlapChecks", "=", RowBox[{"Map", "[", 
+          RowBox[{"Together", ",", RowBox[{"OverlapConsistencyChecks", "[", 
+              "]"}], ",", RowBox[{"{", "2", "}"}]}], "]"}]}], ";", 
+      RowBox[{"VerificationTest", "[", RowBox[{"overlapChecks", ",", 
+          RowBox[{"ConstantArray", "[", RowBox[{"0", ",", RowBox[{"{", 
+                RowBox[{"5", ",", "11"}], "}"}]}], "]"}], ",", 
+          RowBox[{"TestID", "\[Rule]", "\"all-pinch-overlaps-agree\""}]}], 
+        "]"}]}]], "Input"], Cell["4. Assemble the complete connection", 
+   "Section"], Cell["The top-sector identity is the equation immediately \
+following lambda0 (numbered (6) in the supplied PDF). The first displayed \
+form of tilde Lambda0 in the PDF has a c^2/2 typo; the second line, tilde \
+Lambda0=lambda0+b x2^2+a x3^2+c(x0^2-x2^2-x3^2)/2, is algebraically \
+consistent and is used here.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"fullConnection", "=", 
+        RowBox[{"DifferentialMatrixAFull", "[", "]"}]}], ";", 
+      RowBox[{"structuralPattern", "=", RowBox[{"Map", "[", 
+          RowBox[{RowBox[{RowBox[{"If", "[", RowBox[{RowBox[{"TrueQ", "[", 
+                    RowBox[{"#1", "===", "0"}], "]"}], ",", "0", ",", "1"}], 
+                "]"}], "&"}], ",", "fullConnection", ",", 
+            RowBox[{"{", "2", "}"}]}], "]"}]}], ";", 
+      RowBox[{"{", RowBox[{RowBox[{"Dimensions", "[", "fullConnection", 
+            "]"}], ",", TagBox["structuralPattern", Function[BoxForm`e$, 
+            MatrixForm[BoxForm`e$]]]}], "}"}]}]], "Input"], 
+  Cell["With e110 selecting the scalar I110 master, the last row is \
+[e110/2+(a-c/2) A110+(b-c/2) A101+(c/2) A011]/tildeLambda0 plus (b-x3^2)/(2 \
+tildeLambda0) on the I111 diagonal. Thus no new IBP master is introduced by \
+partial_a I111.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"reconstructedTopRow", "=", 
+        FractionBox[RowBox[{RowBox[{FractionBox["1", "2"], " ", 
+             RowBox[{"UnitVector", "[", RowBox[{"11", ",", "5"}], "]"}]}], 
+           "+", RowBox[{RowBox[{"(", RowBox[{"aK", "-", FractionBox["cK", 
+                  "2"]}], ")"}], " ", RowBox[{"fullConnection", 
+               "\[LeftDoubleBracket]", "5", "\[RightDoubleBracket]"}]}], "+", 
+           RowBox[{RowBox[{"(", RowBox[{"bK", "-", FractionBox["cK", "2"]}], 
+               ")"}], " ", RowBox[{"fullConnection", "\[LeftDoubleBracket]", 
+               "7", "\[RightDoubleBracket]"}]}], "+", 
+           RowBox[{FractionBox["1", "2"], " ", "cK", " ", 
+             RowBox[{"fullConnection", "\[LeftDoubleBracket]", "9", 
+               "\[RightDoubleBracket]"}]}]}], RowBox[{"TildeLambda0", "[", 
+           "]"}]]}], ";", RowBox[{RowBox[{"reconstructedTopRow", 
+          "\[LeftDoubleBracket]", "11", "\[RightDoubleBracket]"}], "=", 
+        FractionBox[RowBox[{"bK", "-", "x3sq"}], 
+         RowBox[{"2", " ", RowBox[{"TildeLambda0", "[", "]"}]}]]}], ";", 
+      RowBox[{"regressionRules", "=", 
+        RowBox[{"{", RowBox[{RowBox[{"aK", "\[Rule]", "5"}], ",", 
+            RowBox[{"bK", "\[Rule]", RowBox[{"-", "1"}]}], ",", 
+            RowBox[{"cK", "\[Rule]", "1"}], ",", RowBox[{"x0sq", "\[Rule]", 
+              "4"}], ",", RowBox[{"x2sq", "\[Rule]", "1"}], ",", 
+            RowBox[{"x3sq", "\[Rule]", "2"}], ",", RowBox[{"eps", "\[Rule]", 
+              FractionBox["1", "7"]}]}], "}"}]}], ";", 
+      RowBox[{"VerificationTest", "[", 
+        RowBox[{RowBox[{"Together", "[", RowBox[
+             {RowBox[{RowBox[{"fullConnection", "\[LeftDoubleBracket]", "11", 
+                  "\[RightDoubleBracket]"}], "-", "reconstructedTopRow"}], 
+              "/.", "\[VeryThinSpace]", "regressionRules"}], "]"}], ",", 
+          RowBox[{"ConstantArray", "[", RowBox[{"0", ",", "11"}], "]"}], ",", 
+          RowBox[{"TestID", "\[Rule]", 
+            "\"top-row-reproduces-the-algebraic-I111-identity\""}]}], 
+        "]"}]}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"fullConnectionAtRegressionPoint", "=", 
+        RowBox[{"Map", "[", RowBox[{"Together", ",", 
+            RowBox[{"fullConnection", "/.", "\[VeryThinSpace]", 
+              "regressionRules"}], ",", RowBox[{"{", "2", "}"}]}], "]"}]}], 
+      ";", TagBox["fullConnectionAtRegressionPoint", Function[BoxForm`e$, 
+        MatrixForm[BoxForm`e$]]]}]], "Input"], 
+  Cell["5. Compact epsilon-zero connection", "Section"], 
+  Cell["The Simplify/Factor observation can be implemented reproducibly by \
+first setting epsilon=0, replacing the exact tildeLambda0 polynomial by an \
+inert atomic abbreviation, and then factoring numerator and denominator. \
+CompactifyConnectionEpsilonZero performs the full construction; it can take \
+several minutes on the inherited expanded I110 expressions. \
+CompactConnectionEpsilonZero loads the precomputed exact result immediately. \
+The abbreviation can always be expanded back before differentiation or \
+numerical evolution.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"fullConnectionS", "=", 
+        RowBox[{"CompactConnectionEpsilonZero", "[", "]"}]}], ";", 
+      RowBox[{"abbreviationRules", "=", 
+        RowBox[{"{", RowBox[{RowBox[{"TildeLambda0AbbreviationRule", "[", 
+              "]"}], ",", RowBox[{"TildeLambda0ExpansionRule", "[", "]"}]}], 
+          "}"}]}], ";", RowBox[{"recomputationCommand", "=", 
+        TagBox[RowBox[{"CompactifyConnectionEpsilonZero", "[", 
+           "fullConnection", "]"}], HoldForm]}], ";", 
+      RowBox[{"compactConnectionStatistics", "=", 
+        RowBox[{"Association", "[", RowBox[{RowBox[{"\"OriginalLeafCount\"", 
+              "\[Rule]", RowBox[{"LeafCount", "[", RowBox[{"fullConnection", 
+                  "/.", "\[VeryThinSpace]", RowBox[{"eps", "\[Rule]", 
+                    "0"}]}], "]"}]}], ",", RowBox[{"\"CompactLeafCount\"", 
+              "\[Rule]", RowBox[{"LeafCount", "[", "fullConnectionS", 
+                "]"}]}]}], "]"}]}], ";", 
+      RowBox[{"{", RowBox[{"abbreviationRules", ",", "recomputationCommand", 
+          ",", "compactConnectionStatistics", ",", TagBox["fullConnectionS", 
+           Function[BoxForm`e$, MatrixForm[BoxForm`e$]]]}], "}"}]}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"expandedFullConnectionS", "=", 
+        RowBox[{"ExpandTildeLambda0Abbreviation", "[", "fullConnectionS", 
+          "]"}]}], ";", RowBox[{"compactEqualityCheck", "=", 
+        RowBox[{"DeleteDuplicates", "[", RowBox[{"Together", "/@", 
+            RowBox[{"Flatten", "[", RowBox[{RowBox[
+                 {"expandedFullConnectionS", "-", RowBox[{"(", RowBox[
+                     {"fullConnection", "/.", "\[VeryThinSpace]", RowBox[
+                       {"eps", "\[Rule]", "0"}]}], ")"}]}], "/.", 
+                "\[VeryThinSpace]", RowBox[{"DeleteCases", "[", RowBox[
+                   {"regressionRules", ",", RowBox[{"HoldPattern", "[", 
+                      RowBox[{"eps", "\[Rule]", "_"}], "]"}]}], "]"}]}], 
+              "]"}]}], "]"}]}], ";", RowBox[{"VerificationTest", "[", 
+        RowBox[{"compactEqualityCheck", ",", RowBox[{"{", "0", "}"}], ",", 
+          RowBox[{"TestID", "\[Rule]", 
+            "\"compact-full-connection-equals-original\""}]}], "]"}]}]], 
+   "Input"], Cell["6. Leading singularities of all three pinch sectors", 
+   "Section"], Cell["Each two-denominator sector has two maximal-cut points \
+in the original D4 variable. Since its second master has one D4 numerator, \
+the branch combinations are I[-D4]-zPlus I and I[-D4]-zMinus I.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"cutLocations", "=", 
+        RowBox[{"Association", "[", RowBox[{RowBox[{"\"110\"", "\[Rule]", 
+              RowBox[{"LeadingSingularityLocations", "[", "]"}]}], ",", 
+            RowBox[{"\"101\"", "\[Rule]", RowBox[{
+                "LeadingSingularityLocations101", "[", "]"}]}], ",", 
+            RowBox[{"\"011\"", "\[Rule]", RowBox[{
+                "LeadingSingularityLocations011", "[", "]"}]}]}], "]"}]}], 
+      ";", RowBox[{"cutBases", "=", RowBox[{"Association", "[", 
+          RowBox[{RowBox[{"\"110\"", "\[Rule]", RowBox[{
+                "LeadingSingularityBasisMatrix", "[", "]"}]}], ",", 
+            RowBox[{"\"101\"", "\[Rule]", RowBox[{
+                "LeadingSingularityBasisMatrix101", "[", "]"}]}], ",", 
+            RowBox[{"\"011\"", "\[Rule]", RowBox[{
+                "LeadingSingularityBasisMatrix011", "[", "]"}]}]}], "]"}]}], 
+      ";", RowBox[{"branchMasters", "=", RowBox[{"Association", "[", 
+          RowBox[{RowBox[{"\"110\"", "\[Rule]", RowBox[{RowBox[{"cutBases", 
+                  "[", "\"110\"", "]"}], ".", RowBox[{"fullMasters", 
+                  "\[LeftDoubleBracket]", RowBox[{"5", ";;", "6"}], 
+                  "\[RightDoubleBracket]"}]}]}], ",", 
+            RowBox[{"\"101\"", "\[Rule]", RowBox[{RowBox[{"cutBases", "[", 
+                  "\"101\"", "]"}], ".", RowBox[{"fullMasters", 
+                  "\[LeftDoubleBracket]", RowBox[{"7", ";;", "8"}], 
+                  "\[RightDoubleBracket]"}]}]}], ",", 
+            RowBox[{"\"011\"", "\[Rule]", RowBox[{RowBox[{"cutBases", "[", 
+                  "\"011\"", "]"}], ".", RowBox[{"fullMasters", 
+                  "\[LeftDoubleBracket]", RowBox[{"9", ";;", "10"}], 
+                  "\[RightDoubleBracket]"}]}]}]}], "]"}]}], ";", 
+      RowBox[{"{", RowBox[{"cutLocations", ",", "branchMasters", ",", 
+          RowBox[{"Determinant", "/@", "cutBases"}]}], "}"}]}]], "Input"], 
+  Cell["7. Algebraic lower-triangular form at epsilon=0", "Section"], 
+  Cell[BoxData[RowBox[{RowBox[{"epsilonZeroRules", "=", 
+        RowBox[{"{", RowBox[{RowBox[{"aK", "\[Rule]", "5"}], ",", 
+            RowBox[{"bK", "\[Rule]", RowBox[{"-", "1"}]}], ",", 
+            RowBox[{"cK", "\[Rule]", "1"}], ",", RowBox[{"x0sq", "\[Rule]", 
+              "4"}], ",", RowBox[{"x2sq", "\[Rule]", "1"}], ",", 
+            RowBox[{"x3sq", "\[Rule]", "2"}]}], "}"}]}], ";", 
+      RowBox[{"epsilonZeroTriangularConnection", "=", 
+        RowBox[{"TriangularConnectionEpsilonZero", "[", "epsilonZeroRules", 
+          "]"}]}], ";", RowBox[{"epsilonZeroUpperEntries", "=", 
+        RowBox[{"DeleteDuplicates", "[", RowBox[{"Together", "/@", 
+            RowBox[{"StrictUpperEntries", "[", 
+              "epsilonZeroTriangularConnection", "]"}]}], "]"}]}], ";", 
+      RowBox[{"{", RowBox[{TagBox["epsilonZeroTriangularConnection", 
+           Function[BoxForm`e$, MatrixForm[BoxForm`e$]]], ",", 
+          RowBox[{"VerificationTest", "[", RowBox[{"epsilonZeroUpperEntries", 
+              ",", RowBox[{"{", "0", "}"}], ",", RowBox[{"TestID", "\[Rule]", 
+                "\"complete-epsilon-zero-connection-is-lower-triangular\""}]}]\
+, "]"}]}], "}"}]}]], "Input"], Cell["The same rational compaction is \
+effective after the leading-singularity change of basis. The cached symbolic \
+result below is exactly the similarity transform of fullConnectionS and is \
+manifestly lower triangular. Its leaf count is roughly half that of the \
+unsimplified transform of the already compact matrix.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"leadingSingularityTransform", "=", 
+        RowBox[{"LeadingSingularityTransformFull", "[", "]"}]}], ";", 
+      RowBox[{"rawCompactTriangularConnection", "=", 
+        RowBox[{"leadingSingularityTransform", ".", "fullConnectionS", ".", 
+          TemplateBox[{"leadingSingularityTransform"}, "Inverse", 
+           SyntaxForm -> SuperscriptBox]}]}], ";", 
+      RowBox[{"triangularConnectionS", "=", 
+        RowBox[{"CompactTriangularConnectionEpsilonZero", "[", "]"}]}], ";", 
+      RowBox[{"compactTriangularStatistics", "=", 
+        RowBox[{"Association", "[", RowBox[
+           {RowBox[{"\"BeforeFinalSimplification\"", "\[Rule]", 
+              RowBox[{"LeafCount", "[", "rawCompactTriangularConnection", 
+                "]"}]}], ",", RowBox[{"\"CompactTriangularLeafCount\"", 
+              "\[Rule]", RowBox[{"LeafCount", "[", "triangularConnectionS", 
+                "]"}]}]}], "]"}]}], ";", 
+      RowBox[{"compactTriangularUpperEntries", "=", 
+        RowBox[{"DeleteDuplicates", "[", RowBox[{"Together", "/@", 
+            RowBox[{"StrictUpperEntries", "[", "triangularConnectionS", 
+              "]"}]}], "]"}]}], ";", 
+      RowBox[{"{", RowBox[{"compactTriangularStatistics", ",", 
+          TagBox["triangularConnectionS", Function[BoxForm`e$, 
+            MatrixForm[BoxForm`e$]]], ",", RowBox[{"VerificationTest", "[", 
+            RowBox[{"compactTriangularUpperEntries", ",", RowBox[{"{", "0", 
+                "}"}], ",", RowBox[{"TestID", "\[Rule]", 
+                "\"compact-symbolic-connection-is-lower-triangular\""}]}], 
+            "]"}]}], "}"}]}]], "Input"], Cell["The diagonal two-master \
+entries have a compact cut interpretation. The first row of each cut basis is \
+supported on zMinus and the second on zPlus, hence the reversal below. Each \
+eigenvalue is -1/2 partial_a log LambdaCut.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"Clear", "[", RowBox[{"aa", ",", "z"}], "]"}], 
+      ";", RowBox[{RowBox[{"cutLambda110", "[", RowBox[{"z_", ",", "t_"}], 
+          "]"}], ":=", RowBox[{RowBox[{"cK", " ", 
+            RowBox[{"(", RowBox[{"z", "-", FractionBox["cK", "2"]}], ")"}]}], 
+          "+", RowBox[{"bK", " ", "x2sq"}], "-", 
+          RowBox[{"t", " ", RowBox[{"(", RowBox[{RowBox[{"2", " ", "z"}], 
+                "-", "x0sq", "+", "x2sq", "-", "cK"}], ")"}]}], "+", 
+          FractionBox[SuperscriptBox["cK", "2"], "4"], "-", 
+          RowBox[{"t", " ", "bK"}]}]}], ";", 
+      RowBox[{RowBox[{"cutLambda101", "[", RowBox[{"z_", ",", "t_"}], "]"}], 
+        ":=", RowBox[{RowBox[{"cK", " ", RowBox[{"(", RowBox[{"z", "-", 
+                FractionBox["cK", "2"]}], ")"}]}], "-", 
+          RowBox[{"bK", " ", RowBox[{"(", RowBox[{RowBox[{"2", " ", "z"}], 
+                "-", "x0sq", "+", "x3sq", "-", "cK"}], ")"}]}], "+", 
+          RowBox[{"t", " ", "x3sq"}], "+", FractionBox[SuperscriptBox["cK", 
+            "2"], "4"], "-", RowBox[{"t", " ", "bK"}]}]}], ";", 
+      RowBox[{RowBox[{"cutLambda011", "[", RowBox[{"z_", ",", "t_"}], "]"}], 
+        ":=", RowBox[{"CutLambda011", "[", RowBox[{"z", ",", "t"}], "]"}]}], 
+      ";", RowBox[{"cutEigenvalues", "=", RowBox[{"Association", "[", 
+          RowBox[{RowBox[{"\"110\"", "\[Rule]", RowBox[{RowBox[
+                 {"(", RowBox[{RowBox[{RowBox[{"-", FractionBox["1", "2"]}], 
+                      " ", RowBox[{SubscriptBox["\[PartialD]", RowBox[
+                          {"aa"}]], RowBox[{"Log", "[", RowBox[
+                          {"cutLambda110", "[", RowBox[{"#1", ",", "aa"}], 
+                          "]"}], "]"}]}]}], "&"}], ")"}], "/@", 
+                RowBox[{"Reverse", "[", RowBox[{"cutLocations", "[", 
+                    "\"110\"", "]"}], "]"}]}]}], ",", 
+            RowBox[{"\"101\"", "\[Rule]", RowBox[{RowBox[{"(", RowBox[
+                   {RowBox[{RowBox[{"-", FractionBox["1", "2"]}], " ", 
+                      RowBox[{SubscriptBox["\[PartialD]", RowBox[{"aa"}]], 
+                        RowBox[{"Log", "[", RowBox[{"cutLambda101", "[", 
+                          RowBox[{"#1", ",", "aa"}], "]"}], "]"}]}]}], "&"}], 
+                  ")"}], "/@", RowBox[{"Reverse", "[", RowBox[
+                   {"cutLocations", "[", "\"101\"", "]"}], "]"}]}]}], ",", 
+            RowBox[{"\"011\"", "\[Rule]", RowBox[{RowBox[{"(", RowBox[
+                   {RowBox[{RowBox[{"-", FractionBox["1", "2"]}], " ", 
+                      RowBox[{SubscriptBox["\[PartialD]", RowBox[{"aa"}]], 
+                        RowBox[{"Log", "[", RowBox[{"cutLambda011", "[", 
+                          RowBox[{"#1", ",", "aa"}], "]"}], "]"}]}]}], "&"}], 
+                  ")"}], "/@", RowBox[{"Reverse", "[", RowBox[
+                   {"cutLocations", "[", "\"011\"", "]"}], "]"}]}]}]}], 
+          "]"}]}], ";", RowBox[{"Map", "[", RowBox[{"Simplify", ",", 
+          "cutEigenvalues", ",", RowBox[{"{", "2", "}"}]}], "]"}]}]], 
+   "Input"], Cell["8. Exact finite-epsilon triangularization", "Section"], 
+  Cell["At nonzero epsilon the algebraic cut bases leave O(epsilon) mixing. \
+For each pinch pair {M,K}, define N=K+rho(a) M and order the pair as {N,M}. \
+If its homogeneous block is B, exact triangularity requires rho'=B12 \
+rho^2+(B22-B11) rho-B21. The three sectors are disjoint, so three independent \
+Riccati transformations make the entire eleven-master connection lower \
+triangular, including the final I111 row.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"finiteEpsilonRules", "=", 
+        RowBox[{"{", RowBox[{RowBox[{"bK", "\[Rule]", RowBox[{"-", "1"}]}], 
+            ",", RowBox[{"cK", "\[Rule]", "1"}], ",", 
+            RowBox[{"x0sq", "\[Rule]", "4"}], ",", RowBox[{"x2sq", "\[Rule]", 
+              "1"}], ",", RowBox[{"x3sq", "\[Rule]", "2"}], ",", 
+            RowBox[{"eps", "\[Rule]", FractionBox["1", "7"]}]}], "}"}]}], 
+      ";", RowBox[{"Clear", "[", RowBox[{"rho110", ",", "rho101", ",", 
+          "rho011"}], "]"}], ";", RowBox[{"riccatiEquations", "=", 
+        RowBox[{"ExactTriangularRiccatiEquationsFull", "[", 
+          RowBox[{RowBox[{"{", RowBox[{"rho110", ",", "rho101", ",", 
+                "rho011"}], "}"}], ",", "aK", ",", "finiteEpsilonRules"}], 
+          "]"}]}], ";", RowBox[{"riccatiInitialBranches", "=", 
+        RowBox[{RowBox[{"{", RowBox[{RowBox[{RowBox[{"rho110", "[", "5", 
+                  "]"}], "\[Rule]", RowBox[{"-", RowBox[{"cutLocations", "[", 
+                    "\"110\"", "]"}]}]}], ",", RowBox[{RowBox[{"rho101", "[", 
+                  "5", "]"}], "\[Rule]", RowBox[{"-", RowBox[{"cutLocations", 
+                    "[", "\"101\"", "]"}]}]}], ",", RowBox[{RowBox[
+                 {"rho011", "[", "5", "]"}], "\[Rule]", RowBox[
+                 {"-", RowBox[{"cutLocations", "[", "\"011\"", "]"}]}]}]}], 
+            "}"}], "/.", "\[VeryThinSpace]", "finiteEpsilonRules"}]}], ";", 
+      RowBox[{"{", RowBox[{"riccatiEquations", ",", 
+          "riccatiInitialBranches"}], "}"}]}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"exactFiniteEpsilonTriangularConnection", "=", 
+        RowBox[{"ExactTriangularConnectionFull", "[", 
+          RowBox[{RowBox[{"{", RowBox[{"rho110", ",", "rho101", ",", 
+                "rho011"}], "}"}], ",", "aK", ",", 
+            RowBox[{"\"KinematicRules\"", "\[Rule]", 
+              "finiteEpsilonRules"}]}], "]"}]}], ";", 
+      RowBox[{"finiteEpsilonUpperEntries", "=", 
+        RowBox[{"DeleteDuplicates", "[", RowBox[{"Together", "/@", 
+            RowBox[{"StrictUpperEntries", "[", 
+              "exactFiniteEpsilonTriangularConnection", "]"}]}], "]"}]}], 
+      ";", RowBox[{"{", RowBox[{TagBox[RowBox[{"Map", "[", 
+             RowBox[{RowBox[{RowBox[{"If", "[", RowBox[{RowBox[{"TrueQ", "[", 
+                       RowBox[{RowBox[{"Together", "[", "#1", "]"}], "===", 
+                         "0"}], "]"}], ",", "0", ",", "1"}], "]"}], "&"}], 
+               ",", "exactFiniteEpsilonTriangularConnection", ",", RowBox[
+                {"{", "2", "}"}]}], "]"}], Function[BoxForm`e$, 
+            MatrixForm[BoxForm`e$]]], ",", RowBox[{"VerificationTest", "[", 
+            RowBox[{"finiteEpsilonUpperEntries", ",", RowBox[{"{", "0", 
+                "}"}], ",", RowBox[{"TestID", "\[Rule]", "\"three-Riccati-bas\
+es-give-exact-finite-epsilon-triangularity\""}]}], "]"}]}], "}"}]}]], 
+   "Input"], Cell["9. Genericity and use", "Section"], 
+  Cell[BoxData[RowBox[{"GenericityConditionsFull", "[", "]"}]], "Input"], 
+  Cell["DifferentialMatrixAFull[] is the exact symbolic connection in the \
+original basis. At a chosen exact kinematic point, \
+TriangularConnectionEpsilonZero[rules] gives the algebraic epsilon=0 \
+triangular matrix. At finite epsilon, keep a free and pass the remaining \
+fixed parameters through the KinematicRules option of \
+ExactTriangularConnectionFull. The leading-singularity branches supply \
+rho(a,0)=-zPlus or -zMinus. Degenerate cuts, vanishing tildeLambda0, or zeros \
+of the denominators listed above require a separate local basis.", "Text"]}, 
+ WindowTitle -> "Cosmological Baikov: complete partial_a I111 system", 
+ StyleDefinitions -> "Default.nb"]

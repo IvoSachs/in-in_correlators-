@@ -1,0 +1,133 @@
+Notebook[{Cell["IBP reduction and differential equations for the I011 pinch", 
+   "Title"], Cell["This notebook treats the genuinely distinct D2-D3 \
+two-denominator sector. It derives a five-master basis, constructs four \
+vector IBPs in the variables {D2,D3,D4}, reduces the raised powers and D4 \
+numerators, and assembles the exact matrix in partial_a m011=A011 m011.", 
+   "Text"], Cell["1. Load the implementation", "Section"], 
+  Cell[BoxData[RowBox[{RowBox[{"ClearAll", "[", "\"Global`*\"", "]"}], ";", 
+      RowBox[{"notebookDirectory", "=", RowBox[{"Quiet", "[", 
+          RowBox[{"Check", "[", RowBox[{RowBox[{"NotebookDirectory", "[", 
+                "]"}], ",", RowBox[{"DirectoryName", "[", "$InputFileName", 
+                "]"}]}], "]"}], "]"}]}], ";", 
+      RowBox[{"Get", "[", RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", RowBox[{"notebookDirectory", ",", 
+              "\"CosmologicalBaikov.wl\""}], "}"}], "]"}], "]"}], ";", 
+      RowBox[{"Get", "[", RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", RowBox[{"notebookDirectory", ",", 
+              "\"CosmologicalBaikov011.wl\""}], "}"}], "]"}], "]"}], ";"}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"basis011", "=", 
+        RowBox[{"MasterBasis011", "[", "]"}]}], ";", "basis011"}]], "Input"], 
+  Cell["The notation is J011[s,w,v]=Ibar^(0 s w, v 0 0;0). Thus the basis is \
+{I000,000;0, I010,000;0, I001,000;0, I011,000;0, I011,-100;0}. The last \
+integral has one D4 numerator.", "Text"], 
+  Cell["2. Baikov variables and the a derivative", "Section"], 
+  Cell["For this pinch, p2^2=D2-x2^2, p3^2=D3-x3^2 and p2.p3=D4-c/2. In \
+particular D6=p3^2+b=D3+b-x3^2. Differentiating Lambda^(-1/2) with respect to \
+a inserts D6 Lambda^(-3/2)/2, after which the scaling identity removes the \
+extra inverse Lambda.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"scalingExample", "=", 
+        RowBox[{"ScalingIdentity011", "[", RowBox[{"1", ",", "1", ",", "0"}], 
+          "]"}]}], ";", RowBox[{"derivativeExample", "=", 
+        RowBox[{"ParameterDerivativeA011", "[", RowBox[{"1", ",", "1", ",", 
+            "0"}], "]"}]}], ";", 
+      RowBox[{"{", RowBox[{"scalingExample", ",", "derivativeExample"}], 
+        "}"}]}]], "Input"], Cell["3. Vector and tangential IBPs", "Section"], 
+  Cell["The four generators are p2.partial_p2, p3.partial_p2, p2.partial_p3 \
+and p3.partial_p3. Their Lambda contractions are respectively c z-2 b x, c \
+y-2 b z, c x-2 a z and c z-2 a y. The same tangential combination as in the \
+I110 sector annihilates Lambda.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"ibpsAtTop", "=", 
+        RowBox[{RowBox[{"(", RowBox[{RowBox[{"IBPIdentity011", "[", 
+                RowBox[{"#1", ",", "1", ",", "1", ",", "0"}], "]"}], "&"}], 
+            ")"}], "/@", RowBox[{"{", RowBox[{"\"pp\"", ",", "\"pq\"", ",", 
+              "\"qp\"", ",", "\"qq\""}], "}"}]}]}], ";", 
+      RowBox[{"tangentialCheck", "=", RowBox[{"TangentialCheck011", "[", 
+          "]"}]}], ";", RowBox[
+       {"{", RowBox[{RowBox[{"Length", "[", "ibpsAtTop", "]"}], ",", 
+          "tangentialCheck"}], "}"}]}]], "Input"], 
+  Cell["4. Staged reduction", "Section"], Cell["The one-denominator Hermite \
+reductions remove J011[2,0,0] and J011[0,2,0] and their D4-numerator \
+analogues. Four top-sector IBPs then solve for \
+{J211,-1,J211,0,J120,0,J120,-1}. Three independent IBPs at v=-1 remove the \
+remaining D4^2 numerator and raised indices; the fourth is a consistency \
+check.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"reductionData011", "=", 
+        RowBox[{"ReductionData011", "[", "]"}]}], ";", 
+      RowBox[{"regressionPoint", "=", 
+        RowBox[{"{", RowBox[{RowBox[{"aK", "\[Rule]", "5"}], ",", 
+            RowBox[{"bK", "\[Rule]", RowBox[{"-", "1"}]}], ",", 
+            RowBox[{"cK", "\[Rule]", "1"}], ",", RowBox[{"x2sq", "\[Rule]", 
+              "1"}], ",", RowBox[{"x3sq", "\[Rule]", "2"}], ",", 
+            RowBox[{"eps", "\[Rule]", FractionBox["1", "7"]}]}], "}"}]}], 
+      ";", RowBox[{"mixedRanks", "=", 
+        RowBox[{RowBox[{"(", RowBox[{RowBox[{"MatrixRank", "[", 
+                RowBox[{"#1", "/.", "\[VeryThinSpace]", "regressionPoint"}], 
+                "]"}], "&"}], ")"}], "/@", RowBox[{"reductionData011", "[", 
+            "\"MixedMatrices\"", "]"}]}]}], ";", 
+      RowBox[{"fourthResidual", "=", RowBox[{"Together", "[", 
+          RowBox[{RowBox[{"reductionData011", "[", "\"FourthIBPResidual\"", 
+              "]"}], "/.", "\[VeryThinSpace]", "regressionPoint"}], "]"}]}], 
+      ";", RowBox[{"{", RowBox[{RowBox[{"reductionData011", "[", 
+            "\"SubtopologyRules\"", "]"}], ",", "mixedRanks", ",", 
+          "fourthResidual"}], "}"}]}]], "Input"], 
+  Cell["5. Differential matrix", "Section"], 
+  Cell[BoxData[RowBox[{RowBox[{"matrix011", "=", 
+        RowBox[{"DifferentialMatrixA011", "[", "]"}]}], ";", 
+      RowBox[{"lowerRows011", "=", RowBox[{"Map", "[", 
+          RowBox[{"Together", ",", RowBox[{"matrix011", 
+              "\[LeftDoubleBracket]", RowBox[{"1", ";;", "3"}], 
+              "\[RightDoubleBracket]"}], ",", RowBox[{"{", "2", "}"}]}], 
+          "]"}]}], ";", RowBox[
+       {"{", RowBox[{RowBox[{"Dimensions", "[", "matrix011", "]"}], ",", 
+          TagBox["lowerRows011", Function[BoxForm`e$, MatrixForm[
+             BoxForm`e$]]]}], "}"}]}]], "Input"], 
+  Cell["The first master and the D3-only master both obey partial_a I=(b \
+epsilon/lambda0) I. The D2-only row is the same one-denominator equation \
+appearing in the I110 reduction. The exact fourth and fifth rows are retained \
+as rational expressions and can be simplified entrywise with \
+DifferentialMatrixA011[\"SimplifyFunction\"->Together].", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"matrixAtRegressionPoint", "=", 
+        RowBox[{"NumericalCrossCheck011", "[", "]"}]}], ";", 
+      TagBox["matrixAtRegressionPoint", Function[BoxForm`e$, 
+        MatrixForm[BoxForm`e$]]]}]], "Input"], Cell["6. Automated checks", 
+   "Section"], 
+  Cell[BoxData[RowBox[{RowBox[{"expectedMatrix", "=", 
+        RowBox[{"{", RowBox[{RowBox[{"{", RowBox[{RowBox[{"-", FractionBox[
+                   "4", "147"]}], ",", "0", ",", "0", ",", "0", ",", "0"}], 
+              "}"}], ",", RowBox[{"{", RowBox[{RowBox[{"-", FractionBox["3", 
+                   "280"]}], ",", RowBox[{"-", FractionBox["311", "2940"]}], 
+                ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
+            RowBox[{"{", RowBox[{"0", ",", "0", ",", RowBox[{"-", FractionBox[
+                   "4", "147"]}], ",", "0", ",", "0"}], "}"}], ",", 
+            RowBox[{"{", RowBox[{RowBox[{"-", FractionBox["165", "45038"]}], 
+                ",", RowBox[{"-", FractionBox["895", "472899"]}], ",", 
+                FractionBox["976", "472899"], ",", RowBox[{"-", FractionBox[
+                   "2526", "22519"]}], ",", FractionBox["264", "22519"]}], 
+              "}"}], ",", RowBox[{"{", RowBox[{RowBox[{"-", FractionBox["72", 
+                   "22519"]}], ",", RowBox[{"-", FractionBox["1366", 
+                   "472899"]}], ",", RowBox[{"-", FractionBox["184", 
+                   "157633"]}], ",", FractionBox["954", "22519"], ",", 
+                RowBox[{"-", FractionBox["3630", "22519"]}]}], "}"}]}], 
+          "}"}]}], ";", RowBox[
+       {"{", RowBox[{RowBox[{"VerificationTest", "[", 
+            RowBox[{"matrixAtRegressionPoint", ",", "expectedMatrix", ",", 
+              RowBox[{"TestID", "\[Rule]", 
+                "\"I011-exact-matrix-regression\""}]}], "]"}], ",", 
+          RowBox[{"VerificationTest", "[", RowBox[{RowBox[{"FreeQ", "[", 
+                RowBox[{"matrix011", ",", "_J011"}], "]"}], ",", "True", ",", 
+              RowBox[{"TestID", "\[Rule]", 
+                "\"I011-no-unreduced-integrals\""}]}], "]"}]}], "}"}]}]], 
+   "Input"], Cell["An independent global reduction was also performed at the \
+regression point using 400 IBP equations over 223 integrals. Its rational row \
+reduction leaves the same five masters (plus four seed-boundary artifacts) \
+and reproduces all 25 matrix entries shown above.", "Text"], 
+  Cell["7. Usage and genericity", "Section"], 
+  Cell[BoxData[RowBox[{"{", RowBox[{RowBox[{"GenericityConditions011", "[", 
+          "]"}], ",", RowBox[{"Keys", "[", "reductionData011", "]"}]}], 
+      "}"}]], "Input"], Cell["The displayed rules are generic. In addition to \
+the elementary nonzero factors returned above, the two mixed-sector IBP \
+determinants must not vanish. On a singular locus the master basis should be \
+recomputed rather than obtained by substituting into a formula with a zero \
+denominator.", "Text"]}, WindowTitle -> 
+  "Cosmological Baikov: I011 reduction", StyleDefinitions -> "Default.nb"]
